@@ -1,19 +1,22 @@
 import { connect } from 'react-redux'
 import { toggleEat } from '../actions'
-import PrePeopleList from '../components/PeopleList'
+import PeopleList from '../components/PeopleList'
 
-const mapStateToProps = (state) => ({
-    peopleList: state.peopleList,
-    department: state.department,
+const getPeopleList = (peopleList, id) => {
+    return peopleList.filter(people => people.department === id)
+}
+
+const mapStateToProps = (state, ownProps) => ({
+    peopleList: getPeopleList(state.peopleList,ownProps.department)
 })
 
 const mapDispatchToProps = {
   onEatClick: toggleEat
 }
 
-const PeopleList = connect(
+const CPeopleList = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PrePeopleList)
+)(PeopleList)
 
-export default PeopleList
+export default CPeopleList

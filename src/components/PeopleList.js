@@ -1,8 +1,8 @@
 import React from 'react'
 import People from './People'
 
-const PrePeopleList = ({ peopleList, department, onEatClick }) => (
-  <ul>
+const PeopleList = ({ peopleList, department, onEatClick }) => (
+  <div className="weui_cells weui_cells_checkbox c_m_all_0">
     {peopleList.map(people =>
       <People
         key={people.id}
@@ -10,8 +10,8 @@ const PrePeopleList = ({ peopleList, department, onEatClick }) => (
         onClick={() => onEatClick(people.id)}
       />
     )}
-  </ul>
+  </div>
 )
 
 
-export default PrePeopleList
+export default PeopleList

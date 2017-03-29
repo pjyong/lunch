@@ -2,8 +2,16 @@ import React from 'react'
 import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import App from './components/App'
+import Home from './pages/Home'
+import Manage from './pages/Manage'
+import History from './pages/History'
 import reducer from './reducers'
+import {
+  BrowserRouter as Router,
+  Route,
+  IndexRoute
+} from 'react-router-dom'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 const initSate = {
     peopleList:[
@@ -12,9 +20,15 @@ const initSate = {
             name: 'junepeng1',
             eat: true,
             department: 1,
+        },
+        {
+            id: 2,
+            name: 'junepeng222222222222',
+            eat: false,
+            department: 2,
         }
     ],
-    department:[
+    departmentList:[
         {
             id: 1,
             name: '技术'
@@ -53,12 +67,26 @@ const initSate = {
         },
     ]
 }
-
+// <Route exact path="/"  component={Home}/>
+// <Route path="/history" component={History}/>
+// <Route path="/manage" component={Manage}/>
 const store = createStore(reducer, initSate)
 
 render(
     <Provider store={store}>
-        <App />
+    <Router>
+        <Route render={() => (
+            <div>
+                <div>
+                <ReactCSSTransitionGroup component="div" transitionName="page" transitionEnterTimeout={500} transitionLeaveTimeout={500} style={{height: '100%'}}>
+                <Route exact path="/"  component={Home}/>
+                <Route path="/history" component={History}/>
+                <Route path="/manage" component={Manage}/>
+                    </ReactCSSTransitionGroup>
+                </div>
+                </div>
+            )}/>
+    </Router>
     </Provider>,
     document.getElementById('root')
 )
