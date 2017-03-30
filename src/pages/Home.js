@@ -5,7 +5,6 @@ import Nav from '../components/Nav'
 const Home = () => (
     <div>
         <DepartmentList />
-        <Nav />
     </div>
 )
 
