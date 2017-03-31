@@ -12,7 +12,9 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Link
+  Link,
+  IndexRoute,
+  withRouter
 } from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
@@ -70,56 +72,45 @@ const initSate = {
         },
     ]
 }
-// <Route exact path="/"  component={Home}/>
-// <Route path="/history" component={History}/>
-// <Route path="/manage" component={Manage}/>
+
 const store = createStore(reducer, initSate)
 
-
-
-const HSL = ({ match: { params } }) => {
-    if(params.h === 'home'){
-        return <Home/>
-    }else if(params.h === 'manage'){
-        return <Manage/>
-
-    }else if(params.h === 'history'){
-        return <History/>
+const App = React.createClass({
+    render() {
+        const { match, location, history } = this.props
+        console.log(location)
+        return (
+            <div className="container">
+            <ReactCSSTransitionGroup
+                component="div"
+                transitionName="slide"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}
+                style={{height: '100%'}}
+            >
+            {React.cloneElement(this.props.children, {
+                            key: location.pathname
+            })}
+            </ReactCSSTransitionGroup>
+            <Nav/>
+            </div>
+        );
     }
-    return <Home/>
-}
+});
 
+const AppRouter = withRouter(App)
 
 render(
     <Provider store={store}>
     <Router>
-    <Route render={({ location }) => (
-      <div>
-        <Route exact path="/" render={() => (
-          <Redirect to="/home"/>
-        )}/>
-
-
-        <div>
-        <ReactCSSTransitionGroup
-                      component="div"
-                      transitionName="page"
-                      transitionEnterTimeout={500}
-                      transitionLeaveTimeout={500}
-                      style={{height: '100%'}}
-                  >
-            <Route
-              location={location}
-              key={location.key}
-              path="/:h"
-              component={HSL}
-            />
-          </ReactCSSTransitionGroup>
-        </div>
-        <Nav/>
-      </div>
-    )}/>
-  </Router>
+        <AppRouter>
+            <div>
+            <Route exact path="/" component={Home}/>
+            <Route path="/history" component={History}/>
+            <Route path="/manage" component={Manage}/>
+            </div>
+        </AppRouter>
+    </Router>
     </Provider>,
     document.getElementById('root')
 )
