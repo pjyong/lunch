@@ -4,27 +4,25 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import Home from './pages/Home'
 import Manage from './pages/Manage'
-import Nav from './components/Nav'
+// import Nav from './components/Nav'
 import History from './pages/History'
 import reducer from './reducers'
 import './index.css';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
-  Link,
-  IndexRoute,
   withRouter
 } from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 const initSate = {
+    uid: 1,
     peopleList:[
         {
             id: 1,
             name: 'junepeng1',
             eat: true,
-            department: 1,
+            department: 0,
         },
         {
             id: 2,
@@ -77,22 +75,18 @@ const store = createStore(reducer, initSate)
 
 const App = React.createClass({
     render() {
-        const { match, location, history } = this.props
-        console.log(location)
+        const { location } = this.props
         return (
             <div className="container">
             <ReactCSSTransitionGroup
-                component="div"
-                transitionName="slide"
-                transitionEnterTimeout={500}
+                transitionName="fade"
+                transitionEnterTimeout={300}
                 transitionLeaveTimeout={300}
-                style={{height: '100%'}}
             >
             {React.cloneElement(this.props.children, {
                             key: location.pathname
             })}
             </ReactCSSTransitionGroup>
-            <Nav/>
             </div>
         );
     }

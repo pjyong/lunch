@@ -1,11 +1,18 @@
 import React from 'react'
 import DepartmentList from '../containers/DepartmentList'
-import Nav from '../components/Nav'
+import JoinLunch from '../containers/JoinLunch'
+import Statistic from '../containers/Statistic'
+import JoinTeam from '../containers/JoinTeam'
+import Page from '../components/Page'
+
 
 const Home = () => (
-    <div>
+    <Page spacing={true} className={'home_page'}>
+        <JoinLunch />
+        <Statistic />
         <DepartmentList />
-    </div>
+        <JoinTeam />
+    </Page>
 )
 
 export default Home

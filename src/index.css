@@ -1,31 +1,57 @@
+html, body {
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
 body{
-    line-height:auto;
+    font-family: -apple-system-font, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-.container {
-  position: relative;
+ul{
+    list-style: none;
 }
 
-.slide-enter {
-    position: absolute;
-    width: 100%;
-    transform: translateX(100%);
+body, .page {
+    background-color: #F8F8F8;
+    padding:10px 0px;
 }
 
-.slide-leave {
-    position: absolute;
-    width: 100%;
-    transform: translateX(0%);
+.page__hd {
+    padding: 40px;
 }
 
-.slide-enter.slide-enter-active {
-    transform: translateX(0%);
-    transition: transform 500ms ease-in;
+.page__bd_spacing {
+    padding: 0 15px;
 }
 
+.lunch_flex{
+    padding: 20px;
+}
 
+.page__bd li {
+    margin: 10px 0;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.page__bd li:first-child {
+    margin-top: 0;
+}
 
-.slide-leave.slide-leave-active {
-    transform: translateX(-100%);
-    transition: transform 300ms ease-in;
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.departmentNum{
+    float:right;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+.accordionContent .weui-cells{
+    margin-top:0px;
 }

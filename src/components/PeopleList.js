@@ -1,8 +1,11 @@
 import React from 'react'
+import WeUI from 'react-weui'
 import People from './People'
+const {Cells} = WeUI
+
 
 const PeopleList = ({ peopleList, department, onEatClick }) => (
-  <div className="weui_cells weui_cells_checkbox c_m_all_0">
+  <Cells>
     {peopleList.map(people =>
       <People
         key={people.id}
@@ -10,7 +13,7 @@ const PeopleList = ({ peopleList, department, onEatClick }) => (
         onClick={() => onEatClick(people.id)}
       />
     )}
-  </div>
+  </Cells>
 )
 
 

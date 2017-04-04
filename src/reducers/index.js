@@ -4,7 +4,8 @@ import departmentList from './department'
 
 const lunchApp = combineReducers({
     peopleList,
-    departmentList
+    departmentList,
+    uid: (state = {}) => state,
 })
 
 export default lunchApp

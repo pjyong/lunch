@@ -1,7 +1,6 @@
-let nextTodoId = 0
-export const addPeople = (name,department) => ({
+export const addPeople = (name,department,id) => ({
     type: 'ADD_PEOPLE',
-    id: nextTodoId++,
+    id,
     name,
     department
 })

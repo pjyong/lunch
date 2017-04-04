@@ -1,15 +1,17 @@
 import React from 'react'
-import Department from './Department'
+import Department from '../containers/Department'
 
 const DepartmentList = ({ departmentList }) => (
-  <div>
-    {departmentList.map(department =>
+  <ul>
+  {departmentList.map(department =>
+      <li key={department.id}>
       <Department
-        key={department.id}
+
         {...department}
       />
+      </li>
     )}
-  </div>
+  </ul>
 )
 
 export default DepartmentList

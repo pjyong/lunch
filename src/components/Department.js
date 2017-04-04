@@ -1,15 +1,22 @@
 import React from 'react'
+import WeUI from 'react-weui'
 import PeopleList from '../containers/PeopleList'
+import Accordion from './Accordion'
+const {Flex,FlexItem} = WeUI
 
-const Department = ({ id,name }) => {
+const Department = ({ id,name,num }) => {
     return (
-        <div>
-          <div className="weui_cells_title">
-            {name}
-          </div>
+        <Accordion header={
+            <Flex className="lunch_flex">
+                <FlexItem component='p'>
+                    {name}
+                </FlexItem>
+                <span className="departmentNum">{num}</span>
+            </Flex>
+        }>
           <PeopleList department={id}>
           </PeopleList>
-        </div>
+        </Accordion>
     )
 }
 

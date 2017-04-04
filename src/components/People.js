@@ -1,17 +1,20 @@
 import React from 'react'
+import WeUI from 'react-weui'
+const {Cell, CellBody, CellFooter, Icon} = WeUI
+
 
 const People = ({ eat, name }) => {
     var checked = ''
     if(eat){
-        checked = <i className="weui_icon_success_no_circle"></i>
+        checked = <Icon value="success-no-circle" />
     }
     return (
-  <label className="weui_cell c_weui_cell_no_b weui_check_label">
-    <div className="weui_cell_bd weui_cell_primary">{name}</div>
-    <div className="weui_cell_ft">
+  <Cell>
+    <CellBody>{name}</CellBody>
+    <CellFooter>
         {checked}
-    </div>
-  </label>
+    </CellFooter>
+  </Cell>
     )
 }
 

@@ -1,11 +1,13 @@
 const people = (state, action) => {
     switch (action.type) {
         case 'ADD_PEOPLE':
+            if(state.id !== action.id){
+                return state
+            }
             return {
-                id: action.id,
+                ...state,
                 name: action.name,
-                eat: false,
-                department: action.department,
+                department: action.department
             }
         case 'TOGGLE_EAT':
             if(state.id !== action.id){
@@ -23,10 +25,15 @@ const people = (state, action) => {
 const peopleList = (state = [], action) => {
     switch(action.type){
         case 'ADD_PEOPLE':
-            return [
-                ...state,
-                people(undefined, action)
-            ]
+            var ttt = state.map(
+                t => people(t, action)
+            )
+            console.log(ttt)
+            return ttt
+        case 'TOGGLE_EAT':
+            return state.map(
+                t => people(t, action)
+            )
         default:
             return state
     }

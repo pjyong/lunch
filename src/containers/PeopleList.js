@@ -2,6 +2,10 @@ import { connect } from 'react-redux'
 import { toggleEat } from '../actions'
 import PeopleList from '../components/PeopleList'
 
+export const getPeopleByPid = (peopleList, id) => {
+    return peopleList.find((value, index, arr)=>{return value.id===id})
+}
+
 const getPeopleList = (peopleList, id) => {
     return peopleList.filter(people => people.department === id)
 }
