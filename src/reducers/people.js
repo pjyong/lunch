@@ -30,6 +30,8 @@ const peopleList = (state = [], action) => {
             )
             console.log(ttt)
             return ttt
+        case 'FETCH_PEOPLE':
+            return action.data
         case 'TOGGLE_EAT':
             return state.map(
                 t => people(t, action)

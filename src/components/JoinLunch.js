@@ -13,6 +13,6 @@ export default class JoinLunch extends React.Component {
         }else {
             eatText = '我要点餐'
         }
-        return (<Button onClick={() => onEatClick(uid)} className="weui_btn weui_btn_primary">{eatText}</Button>)
+        return (<Button onClick={() => onEatClick(uid, !eat)} className="weui_btn weui_btn_primary">{eatText}</Button>)
     }
 }

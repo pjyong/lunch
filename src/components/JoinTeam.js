@@ -2,9 +2,6 @@ import React from 'react'
 import WeUI from 'react-weui'
 const {Dialog,Form,FormCell,CellBody,Input,Select,CellHeader,Label} = WeUI
 
-    // let content = department == 0 ? children : false
-
-
 class JoinTeam extends React.Component {
 
     constructor(props){
@@ -16,7 +13,6 @@ class JoinTeam extends React.Component {
             modal: {
                 title: '选择部门',
                 buttons: [
-
                     {
                         type: 'primary',
                         label: '确认',
@@ -32,11 +28,13 @@ class JoinTeam extends React.Component {
     }
 
     handleDepartmentChange(e) {
-       this.setState({department: parseInt(e.target.value)})
+       this.setState({department: parseInt(e.target.value,10)})
     }
 
-
     hideDialog() {
+        if( this.state.department === 0 || this.state.name === '' ){
+            return false
+        }
         this.props.onConfirm(this.state.name, this.state.department, this.props.id)
         this.setState({
             showModal: false,
