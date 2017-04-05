@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Page from '../components/Page'
 
 const mapStateToProps = (state) => ({
-    isPageLoading: state.isPageLoading
+    toast: state.toast
 })
 
 const CPage = connect(

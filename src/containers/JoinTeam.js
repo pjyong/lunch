@@ -1,18 +1,20 @@
 import { connect } from 'react-redux'
 import JoinTeam from '../components/JoinTeam'
 import {getPeopleByPid} from './PeopleList'
-import {addPeople} from '../actions/index'
+import {addPeople,changeToast} from '../actions/index'
 
 
 const mapStateToProps = (state) => {
     return {
         ...getPeopleByPid(state.peopleList, state.uid),
-        departmentList: state.departmentList
+        departmentList: state.departmentList,
+        showInfoModal: state.showInfoModal
     }
 }
 
 const mapDispatchToProps = {
-    onConfirm: addPeople
+    onConfirm: addPeople,
+    changeToast
 }
 
 const CJoinTeam = connect(

@@ -3,7 +3,7 @@
 
 // 后端 API 地址，最好以 http(s):// 打头
 // export const rootPath = 'https://m.cheyuu.com/lunch'
-export const rootPath = 'http://localhost/lunch'
+export const rootPath = 'https://m.cheyuu.com/lunch'
 
 export const errHandler = (e) => {
 }

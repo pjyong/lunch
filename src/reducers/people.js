@@ -28,7 +28,6 @@ const peopleList = (state = [], action) => {
             var ttt = state.map(
                 t => people(t, action)
             )
-            console.log(ttt)
             return ttt
         case 'FETCH_PEOPLE':
             return action.data

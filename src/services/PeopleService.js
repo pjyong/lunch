@@ -16,6 +16,16 @@ class PeopleService {
             body: params
         })
     }
+
+    addPeople(params){
+        let url = '/addpeople'
+
+        return xhr({
+            method: 'post',
+            url: url,
+            body: params
+        })
+    }
 }
 
 export default new PeopleService()

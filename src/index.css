@@ -25,7 +25,7 @@ body, .page {
 }
 
 .lunch_flex{
-    padding: 20px;
+    padding: 10px 15px;
 }
 
 .page__bd li {
@@ -54,4 +54,17 @@ body, .page {
 }
 .accordionContent .weui-cells{
     margin-top:0px;
+}
+
+.lunch_dia .weui-dialog__bd{
+    padding: 0px 15px;
+}
+.lunch_dia .weui-cell_select-before{
+    padding-right:0px;
+    margin-top:10px;
+}
+.lunch_dia .weui-cell_select-before .weui-select{
+    height:30px;
+    line-height: 30px;
+    width:80px;
 }
