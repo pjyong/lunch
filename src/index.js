@@ -47,6 +47,7 @@ const App = React.createClass({
         );
     }
 });
+// <Route exact path="/lunch/index" component={Home}/>
 
 const AppRouter = withRouter(App)
 
@@ -55,7 +56,8 @@ render(
     <Router>
         <AppRouter>
             <div>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/lunch/index" component={Home}/>
+
             <Route path="/history" component={History}/>
             <Route path="/manage" component={Manage}/>
             </div>

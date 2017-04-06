@@ -9,8 +9,17 @@ const calculateEatNum = (peopleList, id) => {
     return eatPeopleList.length
 }
 
+const calculateAllNum = (peopleList, id) => {
+    let allPeopleList = peopleList.filter(people => ( people.department === id ))
+    if(typeof allPeopleList === 'undefined'){
+        return 0
+    }
+    return allPeopleList.length
+}
+
 const mapStateToProps = (state, ownProps) => ({
-    num: calculateEatNum(state.peopleList, ownProps.id)
+    num: calculateEatNum(state.peopleList, ownProps.id),
+    allNum: calculateAllNum(state.peopleList, ownProps.id),
 })
 
 const CDepartment = connect(

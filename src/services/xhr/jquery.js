@@ -3,7 +3,6 @@ import { rootPath, errHandler } from './config'
 
 const xhr = ({ url, body = null, method = 'get' }) => {
 
-
   const defer = $.Deferred()
 
   $.ajax({
@@ -13,8 +12,11 @@ const xhr = ({ url, body = null, method = 'get' }) => {
     // xhrFields: { // 跨域允许带上 cookie
     //   withCredentials: [域名]
     // },
+    dataType: "json",
+    /*
     crossDomain: true,
     dataType: "jsonp",
+    */
   })
   .done(defer.resolve)
   .fail(errHandler)

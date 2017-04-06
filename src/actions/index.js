@@ -49,6 +49,7 @@ export const fetchDepartments = () => {
         dispatch(startPageFetching())
         return departmentService.fetch().then(
             json => {
+                console.log(json)
                 return dispatch({
                     type: 'FETCH_DEPARTMENTS',
                     data: json
@@ -94,6 +95,7 @@ export const fetchPeople = () => {
         dispatch(startPageFetching())
         return peopleService.fetch().then(
             json => {
+                console.log(json)
                 return dispatch({
                     type: 'FETCH_PEOPLE',
                     data: json
@@ -116,7 +118,7 @@ export const toggleEat = (id, eat) => {
                 if(json.status){
                     return dispatch({
                         type: 'TOGGLE_EAT',
-                        data: id
+                        id: id
                     })
                 }else{
                     dispatch(changeToast(true, '', json.msg))
