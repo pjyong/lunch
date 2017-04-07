@@ -5,9 +5,12 @@ import peopleService from '../services/PeopleService'
 export const changeToast = (show=false, icon='', text='', timer=null) => {
     return dispatch => {
         if(show){
-            timer = setTimeout(()=> {
-                dispatch(changeToast(false))
-            }, 2000)
+            // 并且不是loading
+            if(icon !== 'loading'){
+                timer = setTimeout(()=> {
+                    dispatch(changeToast(false))
+                }, 2000)
+            }
         }else{
             //hide
             dispatch({

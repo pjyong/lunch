@@ -56,71 +56,13 @@ render(
     <Router>
         <AppRouter>
             <div>
-            <Route exact path="/lunch/index" component={Home}/>
-
+            <Route exact path="/" component={Home}/>
             <Route path="/history" component={History}/>
             <Route path="/manage" component={Manage}/>
+            <Route component={Home}/>
             </div>
         </AppRouter>
     </Router>
     </Provider>,
     document.getElementById('root')
 )
-
-// 定义整个应用的state
-// const initSate = {
-//     uid: 1,
-//     peopleList:[
-//         {
-//             id: 1,
-//             name: 'junepeng1',
-//             eat: true,
-//             department: 0,
-//         },
-//         {
-//             id: 2,
-//             name: 'junepeng222222222222',
-//             eat: false,
-//             department: 2,
-//         }
-//     ],
-//     departmentList:[
-//         {
-//             id: 1,
-//             name: '技术'
-//         },
-//         {
-//             id: 2,
-//             name: '旅游'
-//         },
-//         {
-//             id: 3,
-//             name: '高管'
-//         },
-//         {
-//             id: 4,
-//             name: '财务'
-//         },
-//         {
-//             id: 5,
-//             name: '人事'
-//         },
-//         {
-//             id: 6,
-//             name: '客服'
-//         },
-//         {
-//             id: 7,
-//             name: '产品'
-//         },
-//         {
-//             id: 8,
-//             name: '保养'
-//         },
-//         {
-//             id: 9,
-//             name: '市场'
-//         },
-//     ],
-//     isPageFetching: false
-// }

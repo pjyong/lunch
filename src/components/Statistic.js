@@ -39,11 +39,11 @@ export default class Statistic extends React.Component {
 
         return (
             <div>
-            <CellsTitle onClick={this.showTip.bind(this)}>今日点餐人数：<span className="f24">{eatNum}</span>&nbsp;&nbsp;所有人数：<span className="f24">{totalNum}</span><Icon className="iconFloat" value="info" />
+            <CellsTitle onClick={this.showTip.bind(this)}>今日点餐人数:<span className="f24">{eatNum}</span>&nbsp;所有人数:<span className="f24">{totalNum}</span><Icon className="iconFloat" value="info" />
             </CellsTitle>
             <Dialog title={this.state.modal.title} buttons={this.state.modal.buttons} show={this.state.showTip} className="lunch_dia ">
                 <div className="txtLeft">
-                1.点餐时间:9:00-11:00(工作日)<br/>
+                1.点餐时间:9:00-11:15(工作日)<br/>
                 2.每天9:30和10:30会从保养公众号收到消息提醒,点击消息即可点餐<br/>
                 3.没点餐没饭吃(财务说的)
                 </div>

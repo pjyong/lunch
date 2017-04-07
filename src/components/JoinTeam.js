@@ -36,9 +36,6 @@ class JoinTeam extends React.Component {
             return false
         }
         this.props.onConfirm(this.state.name, this.state.department, this.props.id)
-        // this.setState({
-        //     showModal: false,
-        // });
     }
 
     render() {

@@ -24,8 +24,9 @@ const toast = (state = {}, action) => {
             }
         case 'CLEAR_TOAST_TIMER':
             state.timer && clearTimeout(state.timer)
-            state.timer = null
-            return state
+            return Object.assign({}, state, {
+                timer: null
+            })
         default:
             return state
     }

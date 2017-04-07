@@ -17,6 +17,7 @@ const xhr = ({ url, body = null, method = 'get' }) => {
     crossDomain: true,
     dataType: "jsonp",
     */
+
   })
   .done(defer.resolve)
   .fail(errHandler)
