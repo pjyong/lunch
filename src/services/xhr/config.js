@@ -3,7 +3,23 @@
 
 // 后端 API 地址，最好以 http(s):// 打头
 // export const rootPath = 'https://m.cheyuu.com/lunch'
-export const rootPath = 'https://m.cheyuu.com/lunch'
 
 export const errHandler = (e) => {
 }
+
+var rootPath
+var ajaxDataType
+if (process.env.NODE_ENV !== 'production') {
+    rootPath = 'https://m.cheyuu.com/test'
+    ajaxDataType = {
+        crossDomain: true,
+        dataType: "jsonp",
+    }
+}else{
+    rootPath = 'https://m.cheyuu.com/'
+    ajaxDataType = {
+        dataType: "json",
+    }
+}
+
+export {ajaxDataType,rootPath}

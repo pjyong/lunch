@@ -18,6 +18,9 @@ body, .page {
     background-color: #F8F8F8;
     padding:10px 0px;
 }
+.tcenter{
+    text-align: center;
+}
 .txtLeft{
     text-align: left;
 }
@@ -54,6 +57,46 @@ body, .page {
     float:right;
 }
 
+.root{    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;}
+.page{
+
+    position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+overflow-y: auto;
+-webkit-overflow-scrolling: touch;
+z-index: 1;
+background-color:#F8F8F8;
+}
+
+.page-enter {
+    z-index: 1024;
+    opacity: 0.01;
+    transform: translate3d(100%, 0, 0);
+    transition: all .2s ease;
+}
+.page-enter-active{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.page-leave {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all .2s ease;
+}
+.page-leave-active{
+    opacity: 0.01;
+    transform: translate3d(100%, 0, 0);
+}
+
 .fade-enter.fade-enter-active {
   opacity: 1;
   transition: opacity 250ms ease-in;
@@ -84,4 +127,14 @@ body, .page {
 .iconFloat{
     float:right;
     line-height:38px;
+}
+.tb_padding{
+padding-top:10px;
+padding-bottom: 10px;}
+
+
+.button-sp-area{
+    margin: 0 auto;
+padding: 5px 0;
+width: 60%;
 }

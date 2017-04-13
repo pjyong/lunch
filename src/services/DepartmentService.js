@@ -2,7 +2,7 @@ import xhr from './xhr/index'
 
 class DepartmentService {
     fetch(){
-        let url = '/departments'
+        let url = 'lunch/departments'
 
         return xhr({url})
     }

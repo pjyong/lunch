@@ -2,13 +2,13 @@ import xhr from './xhr/index'
 
 class PeopleService {
     fetch(){
-        let url = '/people'
+        let url = 'lunch/people'
 
         return xhr({url})
     }
 
     toggleEat(params){
-        let url = '/toggleeat'
+        let url = 'lunch/toggleeat'
 
         return xhr({
             method: 'post',
@@ -18,7 +18,7 @@ class PeopleService {
     }
 
     addPeople(params){
-        let url = '/addpeople'
+        let url = 'lunch/addpeople'
 
         return xhr({
             method: 'post',

@@ -1,5 +1,5 @@
 {
-  "name": "lunch",
+  "name": "mobile_react",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
@@ -8,6 +8,7 @@
     "react-scripts": "^0.9.3"
   },
   "dependencies": {
+    "fastclick": "^1.0.6",
     "jquery": "^3.2.1",
     "react": "^15.3.0",
     "react-addons-css-transition-group": "^15.4.2",
