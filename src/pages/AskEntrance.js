@@ -113,6 +113,8 @@ class AskEntrance extends React.Component {
             {latestQuestionWidget}
 
             {chooseCarClassUI}
+
+            {this.props.children}
         </Page>
     }
 }

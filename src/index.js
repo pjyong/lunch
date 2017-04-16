@@ -8,6 +8,8 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Manage from './pages/Manage'
 import Ask from './pages/Ask'
+import Test from './pages/Test'
+
 import AskEntrance from './pages/AskEntrance'
 import AskAdd from './pages/AskAdd'
 // import Nav from './components/Nav'
@@ -72,8 +74,12 @@ render(
             <Route path="/history" component={History}/>
             <Route path="/manage" component={Manage}/>
             <Route path="/ask/index" component={Ask}/>
-            <Route path="/ask/entrance" component={AskEntrance}/>
-            
+            <Route path="/ask/entrance">
+            <AskEntrance>
+            <Route path="/ask/entrance/hello" component={Test}/>
+            </AskEntrance>
+            </Route>
+
 
             <Route path="/ask/add" component={AskAdd}/>
             <Route component={NotFound}/>

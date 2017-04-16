@@ -6,7 +6,7 @@ class Test extends React.Component {
 
     render(){
         return <div>
-            404
+            this is test section
         </div>
     }
 }
