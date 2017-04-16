@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Page from '../containers/Page'
 import WeUI from 'react-weui'
-const {CellsTitle,Form,FormCell,CellBody,TextArea,OK,Input,ButtonArea,Button,Footer,FooterLinks,FooterLink} = WeUI
+const {CellsTitle,Form,FormCell,CellBody,TextArea,Input,ButtonArea,Button,Footer,FooterLinks,FooterLink} = WeUI
 
 class AskAdd extends React.Component {
 
@@ -29,7 +29,7 @@ class AskAdd extends React.Component {
         </ButtonArea>
         <Footer>
             <FooterLinks>
-                <FooterLink href="javascript:void(0);">电话询问</FooterLink>
+                <FooterLink href="#">电话询问</FooterLink>
             </FooterLinks>
         </Footer>
         </Page>

@@ -1,7 +1,6 @@
 import React from 'react';
 import WeUI from 'react-weui'
 const {Toast} = WeUI
-import $ from 'jquery'
 
 
 export default class Page extends React.Component {

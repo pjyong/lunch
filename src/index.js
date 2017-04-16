@@ -23,7 +23,6 @@ import {
   Switch
 } from 'react-router-dom'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import $ from 'jquery'
 
 const middleware = [ thunk ]
 if (process.env.NODE_ENV !== 'production') {
@@ -61,23 +60,24 @@ const App = React.createClass({
         );
     }
 });
+//         <AppRouter>
 
 const AppRouter = withRouter(App)
 
 render(
     <Provider store={store}>
     <Router>
-        <AppRouter>
             <Switch>
             <Route path="/lunch/index" component={Home}/>
             <Route path="/history" component={History}/>
             <Route path="/manage" component={Manage}/>
             <Route path="/ask/index" component={Ask}/>
             <Route path="/ask/entrance" component={AskEntrance}/>
+            
+
             <Route path="/ask/add" component={AskAdd}/>
             <Route component={NotFound}/>
             </Switch>
-        </AppRouter>
     </Router>
     </Provider>,
     document.getElementById('root')

@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import peopleList from './people'
 import departmentList from './department'
+import {questionList, categoryList, answerList, latestSolvedList} from './question'
 
 const isPageFetching = (state = false, action) => {
     switch(action.type){
@@ -41,6 +42,48 @@ const showInfoModal = (state = true, action) => {
     }
 }
 
+const searchUI = (state = {}, action) => {
+    console.log(action)
+
+    switch(action.type){
+        case 'FOCUS_SEARCH':
+            if(action.text === ''){
+                return {
+                    showSearchInput: true,
+                    showSearchResult: false,
+                    showHotSearchOption: true,
+                    showLatestQuestion: false,
+                    showChooseCarClass: false,
+                }
+            }
+            return {
+                showSearchInput: true,
+                showSearchResult: true,
+                showHotSearchOption: false,
+                showLatestQuestion: false,
+                showChooseCarClass: false
+            }
+        case 'CLEAR_SEARCH':
+            return {
+                showSearchInput: true,
+                showSearchResult: false,
+                showHotSearchOption: false,
+                showLatestQuestion: true,
+                showChooseCarClass: false
+            }
+        case 'SHOW_CHOOSE_CAR_CLASS':
+            return {
+                showSearchInput: true,
+                showSearchResult: false,
+                showHotSearchOption: false,
+                showLatestQuestion: false,
+                showChooseCarClass: true
+            }
+        default:
+            return state
+    }
+}
+
 const lunchApp = combineReducers({
     peopleList,
     departmentList,
@@ -48,6 +91,12 @@ const lunchApp = combineReducers({
     toast,
     showInfoModal,
     uid: (state = {}) => state,
+    questionList,
+    categoryList,
+    answerList,
+    latestSolvedList,
+    searchUI,
+    searchQuestionList: (state = {}) => state,
 })
 
 export default lunchApp
