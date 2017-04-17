@@ -145,7 +145,7 @@
         departmentList:[
 
         ],
-        isPageFetching: false,
+        isPageFetching: true,
         toast:{
             icon: '',
             show: false,
@@ -161,6 +161,8 @@
             showSearchResult: false,
             showHotSearchOption: false,
             showLatestQuestion: true,
+            showChooseCarClass: false,
+            key: null
         },
         // 问题分类列表
         categoryList:{
@@ -172,6 +174,16 @@
             allIds: [],
         },
         answerList:{
+            byId: {},
+            allIds: [],
+        },
+        // 品牌列表
+        brandList:{
+            byId: {},
+            allIds: [],
+            allNames:[]
+        },
+        carClassList:{
             byId: {},
             allIds: [],
         },

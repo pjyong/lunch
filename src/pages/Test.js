@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Page from '../containers/Page'
 
 class Test extends React.Component {
 

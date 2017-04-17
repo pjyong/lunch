@@ -52,7 +52,6 @@ export const fetchDepartments = () => {
         dispatch(startPageFetching())
         return departmentService.fetch().then(
             json => {
-                console.log(json)
                 return dispatch({
                     type: 'FETCH_DEPARTMENTS',
                     data: json
@@ -98,7 +97,6 @@ export const fetchPeople = () => {
         dispatch(startPageFetching())
         return peopleService.fetch().then(
             json => {
-                console.log(json)
                 return dispatch({
                     type: 'FETCH_PEOPLE',
                     data: json

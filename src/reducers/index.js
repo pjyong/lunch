@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import peopleList from './people'
 import departmentList from './department'
-import {questionList, categoryList, answerList, latestSolvedList} from './question'
+import {questionList, categoryList, answerList, latestSolvedList,brandList, carClassList} from './question'
 
 const isPageFetching = (state = false, action) => {
     switch(action.type){
@@ -43,7 +43,6 @@ const showInfoModal = (state = true, action) => {
 }
 
 const searchUI = (state = {}, action) => {
-    console.log(action)
 
     switch(action.type){
         case 'FOCUS_SEARCH':
@@ -54,6 +53,7 @@ const searchUI = (state = {}, action) => {
                     showHotSearchOption: true,
                     showLatestQuestion: false,
                     showChooseCarClass: false,
+                    key: action.text,
                 }
             }
             return {
@@ -61,7 +61,8 @@ const searchUI = (state = {}, action) => {
                 showSearchResult: true,
                 showHotSearchOption: false,
                 showLatestQuestion: false,
-                showChooseCarClass: false
+                showChooseCarClass: false,
+                key: action.text,
             }
         case 'CLEAR_SEARCH':
             return {
@@ -69,7 +70,8 @@ const searchUI = (state = {}, action) => {
                 showSearchResult: false,
                 showHotSearchOption: false,
                 showLatestQuestion: true,
-                showChooseCarClass: false
+                showChooseCarClass: false,
+                key: null,
             }
         case 'SHOW_CHOOSE_CAR_CLASS':
             return {
@@ -77,7 +79,8 @@ const searchUI = (state = {}, action) => {
                 showSearchResult: false,
                 showHotSearchOption: false,
                 showLatestQuestion: false,
-                showChooseCarClass: true
+                showChooseCarClass: true,
+                key: null,
             }
         default:
             return state
@@ -96,6 +99,8 @@ const lunchApp = combineReducers({
     answerList,
     latestSolvedList,
     searchUI,
+    brandList,
+    carClassList,
     searchQuestionList: (state = {}) => state,
 })
 

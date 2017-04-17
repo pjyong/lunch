@@ -21,10 +21,19 @@ import './index.css';
 import {
   HashRouter as Router,
   Route,
-  withRouter,
-  Switch
+  // withRouter,
+  Switch,
+  hashHistory
 } from 'react-router-dom'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+
+import HotSearch from './containers/ask/HotSearch'
+import SearchResult from './containers/ask/SearchResult'
+import ChooseCar from './containers/ask/ChooseCar'
+
 
 const middleware = [ thunk ]
 if (process.env.NODE_ENV !== 'production') {
@@ -38,7 +47,7 @@ window.addEventListener('load', () => {
 const store = createStore(reducer, window.initSate || {},
     applyMiddleware(...middleware)
 )
-
+/*
 const App = React.createClass({
 
     render() {
@@ -65,22 +74,24 @@ const App = React.createClass({
 //         <AppRouter>
 
 const AppRouter = withRouter(App)
+*/
 
 render(
     <Provider store={store}>
-    <Router>
+    <Router history={hashHistory}>
             <Switch>
             <Route path="/lunch/index" component={Home}/>
             <Route path="/history" component={History}/>
             <Route path="/manage" component={Manage}/>
             <Route path="/ask/index" component={Ask}/>
             <Route path="/ask/entrance">
-            <AskEntrance>
-            <Route path="/ask/entrance/hello" component={Test}/>
-            </AskEntrance>
+                <AskEntrance>
+                    <Route exact path="/ask/entrance/search" component={HotSearch}/>
+                    <Route path="/ask/entrance/search/:key" component={SearchResult}/>
+                    <Route path="/ask/entrance/choosecar" component={ChooseCar}/>
+                    <Route path="/ask/entrance/hello" component={Test}/>
+                </AskEntrance>
             </Route>
-
-
             <Route path="/ask/add" component={AskAdd}/>
             <Route component={NotFound}/>
             </Switch>

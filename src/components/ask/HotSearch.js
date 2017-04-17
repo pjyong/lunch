@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import WeUI from 'react-weui'
 const {
@@ -10,25 +9,24 @@ const {
    PanelBody,
    PanelFooter,
    Button,
-   Link,
    FooterText,
    Flex,
    FlexItem
 } = WeUI
-import {changeSearch} from '../../actions/ask'
+import {
+
+  withRouter,
+
+} from 'react-router-dom'
 
 
-const mapStateToProps = (state) => {
-    return {
-    }
-}
-
-const mapDispatchToProps = {
-    changeSearch
-}
 
 
 class HotSearch extends React.Component {
+
+    componentWillMount(){
+        this.props.changeSearch('')
+    }
 
     constructor(props){
         super(props)
@@ -42,7 +40,7 @@ class HotSearch extends React.Component {
     }
 
     handleClickChooseCar(){
-        this.props.changeSearch('', 'choosecarclass')
+        this.props.history.replace('/ask/entrance/choosecar')
     }
 
     render(){
@@ -97,4 +95,4 @@ class HotSearch extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HotSearch)
+export default HotSearch

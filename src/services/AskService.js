@@ -18,6 +18,21 @@ class AskService {
         return xhr({url})
     }
 
+    fetchAllBrands(){
+        let url = 'ask/getbrands'
+        return xhr({url})
+    }
+
+    fetchAllCarClasses(params){
+        let url = 'ask/getcarclasses'
+
+        return xhr({
+            method: 'get',
+            url: url,
+            body: params
+        })
+    }
+
 }
 
 export default new AskService()

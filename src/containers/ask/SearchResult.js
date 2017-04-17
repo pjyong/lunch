@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import HotSearch from '../../components/ask/HotSearch'
+import SearchResult from '../../components/ask/SearchResult'
 import {changeSearch} from '../../actions/ask'
 
 
@@ -14,9 +14,9 @@ const mapDispatchToProps = {
     changeSearch
 }
 
-const CHotSearch = connect(
+const CSearchResult = connect(
   mapStateToProps,
   mapDispatchToProps
-)(HotSearch)
+)(SearchResult)
 
-export default CHotSearch
+export default CSearchResult
