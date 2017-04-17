@@ -13,11 +13,6 @@ const {
    Flex,
    FlexItem
 } = WeUI
-import {
-
-  withRouter,
-
-} from 'react-router-dom'
 
 
 

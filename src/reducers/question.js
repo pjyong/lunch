@@ -29,7 +29,6 @@ const brandList = (state = {}, action) => {
                     return brand
                 })
             }
-
             return newState
         default:
             return state

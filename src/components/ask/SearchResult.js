@@ -7,9 +7,7 @@ const {
     FooterText,
     Link
 } = WeUI
-import QuestionList from '../../containers/ask/QuestionList'
-
-
+import QuestionList from '../../containers/ask/LatestQuestionList'
 
 class HotSearch extends React.Component {
 

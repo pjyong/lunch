@@ -3,15 +3,12 @@ import { connect } from 'react-redux'
 import Page from '../containers/Page'
 
 import SearchBar from '../components/common/SearchBar'
-import QuestionList from '../containers/ask/QuestionList'
 import {fetchLatestSolvedQuestions,changeSearch} from '../actions/ask'
 import {finishPageFetching} from '../actions/index'
 
 import $ from 'jquery'
 import {
-
-  withRouter,
-
+  withRouter
 } from 'react-router-dom'
 
 
@@ -34,45 +31,43 @@ class AskEntrance extends React.Component {
 
     constructor(props) {
         super(props)
-        // 如果本地最近解决问题是空的就抓取线上的
         if(props.latestSolvedList.length === 0){
             $.when(props.fetchLatestSolvedQuestions()).then(props.finishPageFetching)
         }
     }
 
-    handleChange(text, e){
+    componentWillMount(){
+        this.props.changeSearch('', 'clearsearch')
+    }
 
+    handleChange(text, e){
         // this.props.changeSearch(text)
         if(text === ''){
             // do nothing
             return
         }
         this.props.changeSearch(text)
+        // this.props.history.push('/ask/entrance/search/'+text)
     }
 
     handleFocus(text, e){
-        this.props.changeSearch(text)
+        if( this.props.history.location.pathname.indexOf('/ask/entrance/search', 0) !== -1 ){
+            return false;
+        }
         if(text === ''){
-            this.props.history.replace('/ask/entrance/search')
+            this.props.history.push('/ask/entrance/search')
         }else{
-            this.props.history.replace('/ask/entrance/search/'+text)
+            this.props.history.push('/ask/entrance/search/'+text)
         }
     }
 
     handleCancel(){
-        // console.log('testforthat')
-        this.props.changeSearch('', 'clearsearch')
-
-        this.props.history.replace('/ask/entrance')
+        this.props.history.push('/ask/entrance')
     }
 
     render(){
         if(this.props.isPageFetching){
             return <div></div>
-        }
-        var latestQuestionWidget
-        if(this.props.searchUI.showLatestQuestion){
-            latestQuestionWidget = <QuestionList title="最近解决"/>
         }
 
         return <Page spacing={true} className={'ask_page'}>
@@ -86,12 +81,6 @@ class AskEntrance extends React.Component {
                         cancel: '取消'
                     }}
                 />
-
-
-
-            {latestQuestionWidget}
-
-
             {this.props.children}
         </Page>
     }

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import QuestionList from '../../components/ask/QuestionList'
+import QuestionList from '../../components/ask/LatestQuestionList'
 
 const getQuestionList = (questionList, pidArr, solvedList) => {
     if(typeof pidArr === 'undefined'){
@@ -17,8 +17,8 @@ const mapStateToProps = (state, ownProps) => ({
     questionList: getQuestionList(state.questionList, ownProps.pidArr, state.latestSolvedList),
 })
 
-const CQuestionList = connect(
+const CLatestQuestionList = connect(
   mapStateToProps
 )(QuestionList)
 
-export default CQuestionList
+export default CLatestQuestionList

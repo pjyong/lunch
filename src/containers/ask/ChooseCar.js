@@ -1,21 +1,16 @@
 import { connect } from 'react-redux'
 import ChooseCar from '../../components/ask/ChooseCar'
-import {changeSearch, fetchAllBrands,fetchAllCarClasses} from '../../actions/ask'
-
-
-
+import {changeSearch, fetchAllBrands} from '../../actions/ask'
 
 const mapStateToProps = (state) => {
     return {
         brandList: state.brandList,
-        carClassList: state.carClassList,
     }
 }
 
 const mapDispatchToProps = {
     changeSearch,
-    fetchAllBrands,
-    fetchAllCarClasses
+    fetchAllBrands
 }
 
 const CChooseCar = connect(
