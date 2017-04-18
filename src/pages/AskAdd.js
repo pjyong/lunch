@@ -4,6 +4,16 @@ import Page from '../containers/Page'
 import WeUI from 'react-weui'
 const {CellsTitle,Form,FormCell,CellBody,TextArea,Input,ButtonArea,Button,Footer,FooterLinks,FooterLink} = WeUI
 
+
+const mapStateToProps = (state) => {
+    return {
+        text: state.searchUI.text,
+    }
+}
+
+const mapDispatchToProps = {
+}
+
 class AskAdd extends React.Component {
 
     render(){
@@ -36,4 +46,4 @@ class AskAdd extends React.Component {
     }
 }
 
-export default connect()(AskAdd)
+export default connect(mapStateToProps, mapDispatchToProps)(AskAdd)
