@@ -35,11 +35,10 @@ class HotSearch extends React.Component {
     }
 
     handleClickChooseCar(){
-        this.props.history.replace('/ask/entrance/choosecar')
+        this.props.history.push('/ask/entrance/choosecar')
     }
 
     render(){
-
         if(this.state.showChildCategory){
             return <Panel>
             <PanelBody className="hotSearchDivBody">

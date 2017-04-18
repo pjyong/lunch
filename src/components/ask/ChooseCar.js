@@ -5,8 +5,11 @@ const {
     Cell,
     CellBody,
     CellsTitle,
-    LoadMore
+    LoadMore,CellFooter,CellHeader
 } = WeUI
+import {
+  Link
+} from 'react-router-dom'
 import $ from 'jquery'
 
 class ChooseCar extends React.Component {
@@ -15,28 +18,34 @@ class ChooseCar extends React.Component {
         this.state = {
             isSectionFetching: true,
         }
-        if(props.brandList.allIds.length === 0){
-            $.when(props.fetchAllBrands()).then(function(){
+    }
+
+    componentDidMount(){
+        this.props.changeSearch(null)
+        this.getData()
+    }
+
+    getData(){
+        if(this.props.brandList.allIds.length === 0){
+            this.setState({isSectionFetching:true})
+            $.when(this.props.fetchAllBrands()).then(function(){
                 this.setState({isSectionFetching: false})
             }.bind(this))
+        }else{
+            this.setState({isSectionFetching:false})
+
         }
-    }
-
-    componentWillMount(){
-        this.props.changeSearch('', 'choosecarclass')
-    }
-
-    handleClickBrand(id){
-        this.props.history.push('/ask/entrance/choosecar/'+id)
-        /*
-        this.setState({isSectionFetching: true,currentBrandID: id})
-        $.when(this.props.fetchAllCarClasses(id)).then(this.endSectionFetching.bind(this))
-        */
     }
 
     showBrandDetail(id, name){
         if(this.props.brandList.byId[id].Alpha === name){
-            return <Cell key={id} onClick={this.handleClickBrand.bind(this, id)}><CellBody>{this.props.brandList.byId[id].Title}</CellBody></Cell>
+            return <Cell key={id} component={Link} to={"/ask/entrance/choosecar/"+id} access>
+            <CellHeader>
+                    <img src={this.props.brandList.byId[id].Logo} alt="" style={{display: `block`, width: `20px`, marginRight: `5px`}}/>
+            </CellHeader>
+            <CellBody>{this.props.brandList.byId[id].Title}</CellBody>
+            <CellFooter></CellFooter>
+            </Cell>
         }
     }
 
@@ -47,7 +56,7 @@ class ChooseCar extends React.Component {
         }
         return (
             <div>
-            {this.props.brandList.allNames.map(name=>
+            {this.props.brandList.allNames.map((name,index)=>
                 <div key={name}>
                 <CellsTitle>{name}</CellsTitle>
                 <Cells>

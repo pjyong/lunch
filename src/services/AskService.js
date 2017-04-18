@@ -13,9 +13,13 @@ class AskService {
         return xhr({url})
     }
 
-    searchQuestions(){
+    searchQuestions(params){
         let url = 'ask/search'
-        return xhr({url})
+        return xhr({
+            method: 'get',
+            url: url,
+            body: params
+        })
     }
 
     fetchAllBrands(){

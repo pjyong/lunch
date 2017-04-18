@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
 import QuestionList from '../../components/ask/LatestQuestionList'
+import {changeSearch} from '../../actions/ask'
 
-const getQuestionList = (questionList, pidArr, solvedList) => {
+
+export const getQuestionList = (questionList, pidArr, solvedList) => {
     if(typeof pidArr === 'undefined'){
         pidArr = solvedList
     }
@@ -17,8 +19,13 @@ const mapStateToProps = (state, ownProps) => ({
     questionList: getQuestionList(state.questionList, ownProps.pidArr, state.latestSolvedList),
 })
 
+const mapDispatchToProps = {
+    changeSearch
+}
+
 const CLatestQuestionList = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(QuestionList)
 
 export default CLatestQuestionList

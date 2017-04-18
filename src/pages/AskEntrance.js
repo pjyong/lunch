@@ -36,18 +36,23 @@ class AskEntrance extends React.Component {
         }
     }
 
-    componentWillMount(){
-        this.props.changeSearch('', 'clearsearch')
+
+
+    handleSubmit(text, e){
+        if(text === ''){
+            alert('不能为空')
+            return
+        }
+        if(text !== this.props.searchUI.key){
+            this.props.history.push('/ask/entrance/search/'+text)
+        }
     }
 
     handleChange(text, e){
+        // if(text === ''){
+        //     return
+        // }
         // this.props.changeSearch(text)
-        if(text === ''){
-            // do nothing
-            return
-        }
-        this.props.changeSearch(text)
-        // this.props.history.push('/ask/entrance/search/'+text)
     }
 
     handleFocus(text, e){
@@ -73,6 +78,7 @@ class AskEntrance extends React.Component {
         return <Page spacing={true} className={'ask_page'}>
             <SearchBar
                     text={this.props.searchUI.key}
+                    onSubmit={this.handleSubmit.bind(this)}
                     onChange={this.handleChange.bind(this)}
                     onFocus={this.handleFocus.bind(this)}
                     onCancel={this.handleCancel.bind(this)}

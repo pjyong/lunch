@@ -7,6 +7,9 @@ const {
     LoadMore
 } = WeUI
 import $ from 'jquery'
+import {
+  Link
+} from 'react-router-dom'
 
 const getAllCarClassesByBrandID = (brandID, dataList) => {
     var newList = []
@@ -20,22 +23,30 @@ const getAllCarClassesByBrandID = (brandID, dataList) => {
 
 class ChooseCarClass extends React.Component {
     constructor(props){
-        var currentBrandID = props.match.params.brandid
         super(props)
+        var currentBrandID = parseInt(props.match.params.brandid)
         this.state = {
             isSectionFetching: true,
             currentBrandID
         }
-        var carClassList = getAllCarClassesByBrandID(currentBrandID, props.carClassList.byId)
-        if(carClassList.length === 0){
-            $.when(props.fetchAllCarClasses(currentBrandID),props.fetchAllBrands()).then(function(){
-                this.setState({isSectionFetching: false})
-            }.bind(this))
-        }
     }
 
-    componentWillMount(){
-        this.props.changeSearch('', 'choosecarclass')
+    componentDidMount(){
+        this.getData()
+        this.props.changeSearch(null)
+    }
+
+    getData(){
+        var currentBrandID = this.state.currentBrandID
+        var carClassList = getAllCarClassesByBrandID(currentBrandID, this.props.carClassList.byId)
+        if(carClassList.length === 0){
+            this.setState({isSectionFetching: true})
+            $.when(this.props.fetchAllCarClasses(currentBrandID),this.props.fetchAllBrands()).then(function(){
+                this.setState({isSectionFetching: false})
+            }.bind(this))
+        }else{
+            this.setState({isSectionFetching: false})
+        }
     }
 
     render(){
@@ -44,7 +55,7 @@ class ChooseCarClass extends React.Component {
         }
         var carList = getAllCarClassesByBrandID(this.state.currentBrandID, this.props.carClassList.byId)
         return (<div><CellsTitle>{this.props.brandList.byId[this.state.currentBrandID].Title}</CellsTitle><Cells>{carList.map(car=>
-            <Cell key={car.ID}>{car.Title}</Cell>
+            <Cell key={car.ID} component={Link} to={"/ask/entrance/search/"+car.Title+' '} access>{car.Title}</Cell>
         )}</Cells></div>)
     }
 }

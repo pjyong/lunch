@@ -80,9 +80,10 @@ class CustomSearchBar extends React.Component{
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({text:nextProps.text})
         if(nextProps.text !== null){
-            this.setState({focus: true})
+            this.setState({focus: true, text: nextProps.text})
+        }else{
+            this.setState({focus: false, text: ''})
         }
     }
 

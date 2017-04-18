@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import peopleList from './people'
 import departmentList from './department'
-import {questionList, categoryList, answerList, latestSolvedList,brandList, carClassList} from './question'
+import {questionList, categoryList, answerList, latestSolvedList,brandList, carClassList,searchQuestionList} from './question'
 
 const isPageFetching = (state = false, action) => {
     switch(action.type){
@@ -43,44 +43,10 @@ const showInfoModal = (state = true, action) => {
 }
 
 const searchUI = (state = {}, action) => {
-
     switch(action.type){
-        case 'FOCUS_SEARCH':
-            if(action.text === ''){
-                return {
-                    showSearchInput: true,
-                    showSearchResult: false,
-                    showHotSearchOption: true,
-                    showLatestQuestion: false,
-                    showChooseCarClass: false,
-                    key: action.text,
-                }
-            }
+        case 'RESET_SEARCH':
             return {
-                showSearchInput: true,
-                showSearchResult: true,
-                showHotSearchOption: false,
-                showLatestQuestion: false,
-                showChooseCarClass: false,
                 key: action.text,
-            }
-        case 'CLEAR_SEARCH':
-            return {
-                showSearchInput: true,
-                showSearchResult: false,
-                showHotSearchOption: false,
-                showLatestQuestion: true,
-                showChooseCarClass: false,
-                key: null,
-            }
-        case 'SHOW_CHOOSE_CAR_CLASS':
-            return {
-                showSearchInput: true,
-                showSearchResult: false,
-                showHotSearchOption: false,
-                showLatestQuestion: false,
-                showChooseCarClass: true,
-                key: null,
             }
         default:
             return state
@@ -101,7 +67,7 @@ const lunchApp = combineReducers({
     searchUI,
     brandList,
     carClassList,
-    searchQuestionList: (state = {}) => state,
+    searchQuestionList
 })
 
 export default lunchApp

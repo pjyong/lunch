@@ -32,6 +32,20 @@ export const fetchAllBrands = () => {
     }
 }
 
+// 搜索
+export const searchAllQuestions = (keyword) => {
+    return dispatch => {
+        return askService.searchQuestions({keywords:keyword}).then(
+            json => {
+                return dispatch({
+                    type: 'FETCH_SEARCH_QUESTIONS',
+                    data: json
+                })
+            }
+        )
+    }
+}
+
 // 抓取所有车型由品牌ID
 export const fetchAllCarClasses = (brandid) => {
     return dispatch => {
@@ -63,17 +77,9 @@ export const fetchAllCategories = () => {
 
 
 //
-export const changeSearch = (text = '', t) => {
-    if(t === 'clearsearch'){
-        return {
-            type: 'CLEAR_SEARCH'
-        }
-    }else if(t === 'choosecarclass'){
-        return {
-            type: 'SHOW_CHOOSE_CAR_CLASS'
-        }
-    }
+export const changeSearch = (text = null) => {
     return {
-    type: 'FOCUS_SEARCH',
-    text: text,
-}}
+        type: 'RESET_SEARCH',
+        text: text,
+    }
+}

@@ -1,5 +1,6 @@
 const questionList = (state = {}, action) => {
     switch(action.type){
+        case 'FETCH_SEARCH_QUESTIONS':
         case 'FETCH_QUESTIONS':
             // 和抓取的数据做比对
             var newState = Object.assign({}, state)
@@ -12,6 +13,7 @@ const questionList = (state = {}, action) => {
 
             })
             return newState
+
         default:
             return state
     }
@@ -20,7 +22,11 @@ const questionList = (state = {}, action) => {
 const brandList = (state = {}, action) => {
     switch(action.type){
         case 'FETCH_BRANDS':
-            var newState = Object.assign({}, state)
+            var newState = {
+                byId: {},
+                allIds: [],
+                allNames:[]
+            }
             for(var i in action.data){
                 newState.allNames.push(i)
                 action.data[i].map((brand)=>{
@@ -81,4 +87,21 @@ const latestSolvedList = (state = [], action) => {
     }
 }
 
-export {questionList,categoryList,answerList,latestSolvedList,brandList,carClassList}
+const searchQuestionList = (state = [], action) => {
+    switch(action.type){
+        case 'FETCH_SEARCH_QUESTIONS':
+            var ids = []
+            action.data.map(question => {
+                ids.push(question.ID)
+                return question
+            })
+            return ids
+        // 如果搜索关键词变更就清空
+        case 'RESET_SEARCH':
+            return []
+        default:
+            return state
+    }
+}
+
+export {questionList,categoryList,answerList,latestSolvedList,brandList,carClassList,searchQuestionList}
