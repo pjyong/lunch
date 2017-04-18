@@ -29,10 +29,12 @@ import {
 
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-
+import LatestQuestionList from './containers/ask/LatestQuestionList'
 import HotSearch from './containers/ask/HotSearch'
 import SearchResult from './containers/ask/SearchResult'
 import ChooseCar from './containers/ask/ChooseCar'
+import ChooseCarClass from './containers/ask/ChooseCarClass'
+
 
 
 const middleware = [ thunk ]
@@ -86,9 +88,11 @@ render(
             <Route path="/ask/index" component={Ask}/>
             <Route path="/ask/entrance">
                 <AskEntrance>
+                    <Route exact path="/ask/entrance" component={LatestQuestionList}/>
                     <Route exact path="/ask/entrance/search" component={HotSearch}/>
                     <Route path="/ask/entrance/search/:key" component={SearchResult}/>
-                    <Route path="/ask/entrance/choosecar" component={ChooseCar}/>
+                    <Route exact path="/ask/entrance/choosecar" component={ChooseCar}/>
+                    <Route path="/ask/entrance/choosecar/:brandid" component={ChooseCarClass}/>
                     <Route path="/ask/entrance/hello" component={Test}/>
                 </AskEntrance>
             </Route>
