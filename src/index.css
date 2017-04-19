@@ -30,13 +30,21 @@ body, .page {
 }
 
 .page__bd_spacing {
-    padding: 0 15px;
 }
 
 .lunch_flex{
     padding: 10px 15px;
 }
 
+.questionDiv .weui-media-box__desc{
+    -webkit-line-clamp: 1;
+}
+
+.question_page .weui-media-box__desc{
+    -webkit-line-clamp: 1000;
+}
+
+/*
 .page__bd li {
     margin: 10px 0;
     background-color: #fff;
@@ -47,7 +55,7 @@ body, .page {
 .page__bd li:first-child {
     margin-top: 0;
 }
-
+*/
 .fade-enter {
   opacity: 0;
   z-index: 1;
@@ -59,6 +67,10 @@ body, .page {
 
 .hide{
     display:none;
+}
+
+.weui-media-box__title{
+    font-size:14px;
 }
 
 .root{    position: absolute;
@@ -150,7 +162,7 @@ width: 60%;
     /*padding:0px 15px;*/
 }
 .hotSearchDivBodyInner{
-    padding:0px 15px 10px 0px;
+    padding:0px 15px 10px 15px;
 }
 .hotSearchDivBodyInner a{
     margin-right:10px;

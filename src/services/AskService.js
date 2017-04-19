@@ -22,6 +22,24 @@ class AskService {
         })
     }
 
+    fetchQuestion(params){
+        let url = 'ask/getquestion'
+        return xhr({
+            method: 'get',
+            url: url,
+            body: params
+        })
+    }
+
+    fetchAnswerList(params){
+        let url = 'ask/getanswerlist'
+        return xhr({
+            method: 'get',
+            url: url,
+            body: params
+        })
+    }
+
     searchQuestions(params){
         let url = 'ask/search'
         return xhr({

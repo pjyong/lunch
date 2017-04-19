@@ -1,9 +1,10 @@
 const questionList = (state = {}, action) => {
+    var newState
     switch(action.type){
         case 'FETCH_SEARCH_QUESTIONS':
         case 'FETCH_QUESTIONS':
             // 和抓取的数据做比对
-            var newState = Object.assign({}, state)
+            newState = Object.assign({}, state)
             action.data.map(question => {
                 if(typeof newState.byId[question.ID] === 'undefined'){
                     newState.byId[question.ID] = question
@@ -13,7 +14,13 @@ const questionList = (state = {}, action) => {
 
             })
             return newState
-
+        case 'FETCH_QUESTION_DETAIL':
+            newState = Object.assign({}, state)
+            if(typeof newState.byId[action.data.ID] === 'undefined'){
+                newState.byId[action.data.ID] = action.data
+                newState.allIds.push(action.data.ID)
+            }
+            return newState
         default:
             return state
     }
@@ -78,6 +85,18 @@ const categoryList = (state = {}, action) => {
 
 const answerList = (state = {}, action) => {
     switch(action.type){
+        case 'FETCH_ANSWER_LIST':
+            // 和抓取的数据做比对
+            var newState = Object.assign({}, state)
+            action.data.map(question => {
+                if(typeof newState.byId[question.ID] === 'undefined'){
+                    newState.byId[question.ID] = question
+                    newState.allIds.push(question.ID)
+                }
+                return question
+
+            })
+            return newState
         default:
             return state
     }

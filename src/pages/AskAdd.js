@@ -8,11 +8,9 @@ import {submitQuestion} from '../actions/ask'
 
 import $ from 'jquery'
 
-
 const mapStateToProps = (state) => {
     return {
         text: state.searchUI.key,
-        submitActionID: state.submitActionID
     }
 }
 
@@ -22,6 +20,14 @@ const mapDispatchToProps = {
 }
 
 class AskAdd extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            newID: 0,
+        }
+    }
+
     handleSubmit(){
         var title = $.trim($('.titleInput').val())
         var description = $.trim($('.descriptionInput').val())
@@ -29,11 +35,26 @@ class AskAdd extends React.Component {
             this.props.changeToast(true, '', '请填写标题')
             return false
         }
-        this.props.submitQuestion(title, description)
+        this.props.submitQuestion(title, description).then(
+            json => {
+                this.setState({newID: json.id})
+            }
+        )
+        /*
+
+        */
+    }
+
+    goSearch(){
+        this.props.history.push('/ask/entrance/search')
+    }
+
+    goQuestion(){
+        this.props.history.push('/ask/question/'+this.state.newID)
     }
 
     render(){
-        if(this.props.submitActionID > 0){
+        if(this.state.newID > 0){
             return <Msg
             type="success"
             title="操作成功"
@@ -41,11 +62,11 @@ class AskAdd extends React.Component {
             buttons={[{
                 type: 'primary',
                 label: '查看我的提问',
-                onClick: this.props.history.push('/ask/index')
+                onClick: this.goQuestion.bind(this)
             }, {
                 type: 'default',
                 label: '再试试搜索',
-                onClick: this.props.history.push('/ask/entrance/search')
+                onClick: this.goSearch.bind(this)
             }]}
         />
         }

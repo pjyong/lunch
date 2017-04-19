@@ -34,6 +34,7 @@ import HotSearch from './containers/ask/HotSearch'
 import SearchResult from './containers/ask/SearchResult'
 import ChooseCar from './containers/ask/ChooseCar'
 import ChooseCarClass from './containers/ask/ChooseCarClass'
+import QuestionDetail from './pages/QuestionDetail'
 
 
 
@@ -86,6 +87,7 @@ render(
             <Route path="/history" component={History}/>
             <Route path="/manage" component={Manage}/>
             <Route path="/ask/index" component={Ask}/>
+            <Route path="/ask/question/:id" component={QuestionDetail}/>
             <Route path="/ask/entrance">
                 <AskEntrance>
                     <Route exact path="/ask/entrance" component={LatestQuestionList}/>

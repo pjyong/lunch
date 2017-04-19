@@ -24,7 +24,7 @@ const getAllCarClassesByBrandID = (brandID, dataList) => {
 class ChooseCarClass extends React.Component {
     constructor(props){
         super(props)
-        var currentBrandID = parseInt(props.match.params.brandid)
+        var currentBrandID = parseInt(props.match.params.brandid, 10)
         this.state = {
             isSectionFetching: true,
             currentBrandID

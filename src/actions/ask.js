@@ -60,6 +60,35 @@ export const fetchAllCarClasses = (brandid) => {
     }
 }
 
+// 抓取文章详情
+export const fetchQuestion = (id) => {
+    return dispatch => {
+        return askService.fetchQuestion({id: id}).then(
+            json => {
+                if(json.status){
+                    return dispatch({
+                        type: 'FETCH_QUESTION_DETAIL',
+                        data: json.data
+                    })
+                }
+            }
+        )
+    }
+}
+
+export const fetchAnswerList = (qid) => {
+    return dispatch => {
+        return askService.fetchAnswerList({qid: qid}).then(
+            json => {
+                return dispatch({
+                    type: 'FETCH_ANSWER_LIST',
+                    data: json
+                })
+            }
+        )
+    }
+}
+
 // 抓取所有分类
 export const fetchAllCategories = () => {
     return dispatch => {

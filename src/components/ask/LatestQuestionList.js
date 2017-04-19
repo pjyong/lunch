@@ -8,7 +8,7 @@ class LatestQuestionList extends React.Component {
     }
 
     render(){
-        return <QuestionList title="最近解决" questionList={this.props.questionList}/>
+        return <QuestionList title="最新提问" questionList={this.props.questionList}/>
     }
 }
 export default LatestQuestionList

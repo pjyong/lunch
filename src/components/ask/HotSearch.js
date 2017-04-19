@@ -11,7 +11,7 @@ const {
    Button,
    FooterText,
    Flex,
-   FlexItem,LoadMore
+   FlexItem
 } = WeUI
 import {
   Link
@@ -29,7 +29,7 @@ class HotSearch extends React.Component {
 
 
     componentDidMount(){
-        this.props.changeSearch(null)
+        this.props.changeSearch('')
     }
 
 
@@ -80,7 +80,7 @@ class HotSearch extends React.Component {
             <PanelBody className="hotSearchDivBody">
             <div className="hotSearchDivBodyInner">
             {childCates.map(id=>
-                <Button component={Link} to={"/ask/entrance/search/"+this.props.categoryList.byId[id].Title+' '} type="default" plain size="small">{this.props.categoryList.byId[id].Title}</Button>
+                <Button key={id} component={Link} to={"/ask/entrance/search/"+this.props.categoryList.byId[id].Title+' '} type="default" plain size="small">{this.props.categoryList.byId[id].Title}</Button>
             )}
 
 
