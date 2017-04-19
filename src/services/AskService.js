@@ -13,6 +13,15 @@ class AskService {
         return xhr({url})
     }
 
+    addQuestion(params){
+        let url = 'ask/addquestion'
+        return xhr({
+            method: 'post',
+            url: url,
+            body: params
+        })
+    }
+
     searchQuestions(params){
         let url = 'ask/search'
         return xhr({

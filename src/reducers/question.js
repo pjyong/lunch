@@ -61,6 +61,16 @@ const carClassList = (state = {}, action) => {
 
 const categoryList = (state = {}, action) => {
     switch(action.type){
+        case 'FETCH_CATEGORIES':
+            var newState = Object.assign({}, state)
+            action.data.map(question => {
+                if(typeof newState.byId[question.ID] === 'undefined'){
+                    newState.byId[question.ID] = question
+                    newState.allIds.push(question.ID)
+                }
+                return question
+            })
+            return newState
         default:
             return state
     }

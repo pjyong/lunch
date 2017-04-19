@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Page from '../containers/Page'
 
 import SearchBar from '../components/common/SearchBar'
-import {fetchLatestSolvedQuestions,changeSearch} from '../actions/ask'
+import {fetchLatestSolvedQuestions,fetchAllCategories,changeSearch} from '../actions/ask'
 import {finishPageFetching} from '../actions/index'
 
 import $ from 'jquery'
@@ -23,6 +23,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     fetchLatestSolvedQuestions,
+    fetchAllCategories,
     finishPageFetching,
     changeSearch
 }
@@ -32,7 +33,7 @@ class AskEntrance extends React.Component {
     constructor(props) {
         super(props)
         if(props.latestSolvedList.length === 0){
-            $.when(props.fetchLatestSolvedQuestions()).then(props.finishPageFetching)
+            $.when(props.fetchLatestSolvedQuestions(),props.fetchAllCategories()).then(props.finishPageFetching)
         }
     }
 

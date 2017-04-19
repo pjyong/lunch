@@ -10,7 +10,7 @@ export const errHandler = (e) => {
 var rootPath
 var ajaxDataType
 if (process.env.NODE_ENV !== 'production') {
-    rootPath = 'https://m.cheyuu.com/test'
+    rootPath = 'http://localhost/test'
     ajaxDataType = {
         crossDomain: true,
         dataType: "jsonp",

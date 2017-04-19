@@ -53,6 +53,15 @@ const searchUI = (state = {}, action) => {
     }
 }
 
+const submitActionID = (state=0, action) => {
+    switch(action.type){
+        case 'ADD_QUESTION':
+            return action.id
+        default:
+            return state
+    }
+}
+
 const lunchApp = combineReducers({
     peopleList,
     departmentList,
@@ -67,7 +76,8 @@ const lunchApp = combineReducers({
     searchUI,
     brandList,
     carClassList,
-    searchQuestionList
+    searchQuestionList,
+    submitActionID
 })
 
 export default lunchApp

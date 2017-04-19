@@ -1,5 +1,5 @@
 import askService from '../services/AskService'
-import {startPageFetching} from './index'
+import {startPageFetching,setLoadingToast,hideToast,changeToast} from './index'
 
 
 // 抓取最近解决的
@@ -70,6 +70,29 @@ export const fetchAllCategories = () => {
                     type: 'FETCH_CATEGORIES',
                     data: json
                 })
+            }
+        )
+    }
+}
+
+// 提交问题
+export const submitQuestion = (title, description) => {
+    return dispatch => {
+        dispatch(setLoadingToast())
+        return askService.addQuestion({
+            title: title,
+            description: description,
+        }).then(
+            json => {
+                dispatch(hideToast())
+                if(json.status){
+                    return dispatch({
+                        type: 'ADD_QUESTION',
+                        id: json.id
+                    })
+                }else{
+                    dispatch(changeToast(true, '', json.msg))
+                }
             }
         )
     }

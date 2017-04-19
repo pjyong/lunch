@@ -5,11 +5,13 @@ const {
    PanelFooter,
     Button,
     FooterText,
-    Link,
     LoadMore
 } = WeUI
 import QuestionList from './QuestionList'
 import $ from 'jquery'
+import {
+  Link
+} from 'react-router-dom'
 
 
 class HotSearch extends React.Component {
@@ -81,7 +83,7 @@ class HotSearch extends React.Component {
         return <QuestionList title="搜索结果" questionList={this.props.questionList}><PanelFooter className="tcenter tb_padding">
             <FooterText>没有解决问题?</FooterText>
             <div className="button-sp-area">
-            <Button type="primary" plain size="small" component={Link} to={"/ask/add"}>联系我的车管家</Button>
+            <Button type="primary" plain size="small" component={Link} to="/ask/add">联系我的车管家</Button>
             </div>
             <FooterText>车管家8:00-20:00&nbsp;12小时在线哟</FooterText>
         </PanelFooter></QuestionList>
