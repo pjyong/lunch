@@ -31,13 +31,11 @@ class QuestionDetail extends React.Component {
     }
 
     render(){
-        console.log(this.props)
         if(this.props.isPageFetching){
-            return <div></div>
+            return <Page className={'question_page'}></Page>
         }
         return <Page className={'question_page'}>
             <Panel>
-
                 <PanelBody>
                     <MediaBox type="text">
                         <MediaBoxTitle>{this.props.questionDetail.Title}<div>问题补充：</div></MediaBoxTitle>

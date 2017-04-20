@@ -5,7 +5,6 @@ const {Toast} = WeUI
 
 export default class Page extends React.Component {
     componentDidMount(){
-        // $('.react_page').removeClass('slideIn').addClass('js_show');
     }
     componentWillUnmount(){
         const{toast} = this.props

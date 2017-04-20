@@ -13,7 +13,6 @@ const getAnswerListByQID = (qid, answerList) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-
     return {
         answerList: getAnswerListByQID(ownProps.qid, state.answerList),
     }
