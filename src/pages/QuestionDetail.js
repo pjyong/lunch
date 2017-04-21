@@ -11,6 +11,7 @@ import $ from 'jquery'
 
 const mapStateToProps = (state, ownProps) => {
     var pid = parseInt(ownProps.match.params.id,10);
+    console.error(ownProps)
     return {
         isPageFetching: state.isPageFetching,
         questionID: pid,
@@ -34,7 +35,7 @@ class QuestionDetail extends React.Component {
         if(this.props.isPageFetching){
             return <Page className={'question_page'}></Page>
         }
-        return <Page className={'question_page'}>
+        return <Page className={'question_page'} pageTitle={this.props.questionDetail.Title}>
             <Panel>
                 <PanelBody>
                     <MediaBox type="text">

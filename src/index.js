@@ -1,55 +1,37 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
-import { createLogger } from 'redux-logger'
+// 解决IOS web点击延迟
+import FastClick from 'fastclick';
+import {
+    Route,
+    // withRouter,
+    Switch,
+} from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
+import {store, history} from './store/index'
+/*加载页面和子页面*/
 import Home from './pages/Home'
-import NotFound from './pages/NotFound'
 import Manage from './pages/Manage'
 import Ask from './pages/Ask'
-import Test from './pages/Test'
-
 import AskEntrance from './pages/AskEntrance'
 import AskAdd from './pages/AskAdd'
-// import Nav from './components/Nav'
 import History from './pages/History'
-import FastClick from 'fastclick';
-import reducer from './reducers'
-import './index.css';
-// 这里因为我只是基于某些页面才加的React,所以最好还是
-import {
-  HashRouter as Router,
-  Route,
-  // withRouter,
-  Switch,
-  hashHistory
-} from 'react-router-dom'
-
-
-// import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-
 import LatestQuestionList from './containers/ask/LatestQuestionList'
 import HotSearch from './containers/ask/HotSearch'
 import SearchResult from './containers/ask/SearchResult'
 import ChooseCar from './containers/ask/ChooseCar'
 import ChooseCarClass from './containers/ask/ChooseCarClass'
 import QuestionDetail from './pages/QuestionDetail'
-
-
-
-const middleware = [ thunk ]
-if (process.env.NODE_ENV !== 'production') {
-    middleware.push(createLogger())
-}
+import Test from './pages/Test'
+import NotFound from './pages/NotFound'
+// 使用页面动画组件
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import './index.css';
 
 window.addEventListener('load', () => {
-  FastClick.attach(document.body);
+    FastClick.attach(document.body);
 });
-
-const store = createStore(reducer, window.initSate || {},
-    applyMiddleware(...middleware)
-)
 /*
 const App = React.createClass({
 
@@ -81,7 +63,7 @@ const AppRouter = withRouter(App)
 
 render(
     <Provider store={store}>
-    <Router history={hashHistory}>
+    <ConnectedRouter history={history}>
             <Switch>
             <Route path="/lunch/index" component={Home}/>
             <Route path="/history" component={History}/>
@@ -101,7 +83,7 @@ render(
             <Route path="/ask/add" component={AskAdd}/>
             <Route component={NotFound}/>
             </Switch>
-    </Router>
+    </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
 )

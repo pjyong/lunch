@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux'
 import peopleList from './people'
 import departmentList from './department'
-import {questionList, categoryList, answerList, latestSolvedList,brandList, carClassList,searchQuestionList} from './question'
+import askReducer from './ask/index'
+import { routerReducer } from 'react-router-redux'
+import {store} from '../store/index'
+
 
 const isPageFetching = (state = false, action) => {
     switch(action.type){
@@ -53,15 +56,6 @@ const searchUI = (state = {}, action) => {
     }
 }
 
-// const submitActionID = (state=0, action) => {
-//     switch(action.type){
-//         case 'ADD_QUESTION':
-//             return action.id
-//         default:
-//             return state
-//     }
-// }
-
 const lunchApp = combineReducers({
     peopleList,
     departmentList,
@@ -69,15 +63,30 @@ const lunchApp = combineReducers({
     toast,
     showInfoModal,
     uid: (state = {}) => state,
-    questionList,
-    categoryList,
-    answerList,
-    latestSolvedList,
     searchUI,
-    brandList,
-    carClassList,
-    searchQuestionList,
-
+    router:routerReducer,
+    ...askReducer
 })
 
 export default lunchApp
+
+// 同步加载的reducers
+const syncReducers = {
+    router: routerReducer,
+}
+
+// 异步加载的reducers
+const asyncReducers = {}
+
+export function createRootReducer() {
+    return combineReducers({
+        ...syncReducers,
+        ...asyncReducers
+    })
+}
+
+// 按需加载，注入相应的reducer
+export function injectReducer(key, reducer) {
+    asyncReducers[key] = reducer
+    store.replaceReducer(createRootReducer()) // 替换当前的 rootReducer
+}
