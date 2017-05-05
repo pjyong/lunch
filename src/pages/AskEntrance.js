@@ -6,6 +6,8 @@ import SearchBar from '../components/common/SearchBar'
 import {fetchLatestSolvedQuestions,fetchAllCategories,changeSearch} from '../actions/ask'
 import {finishPageFetching} from '../actions/index'
 
+
+
 import $ from 'jquery'
 import {
   withRouter
@@ -37,8 +39,6 @@ class AskEntrance extends React.Component {
         }
     }
 
-
-
     handleSubmit(text, e){
         if(text === ''){
             alert('不能为空')
@@ -50,10 +50,6 @@ class AskEntrance extends React.Component {
     }
 
     handleChange(text, e){
-        // if(text === ''){
-        //     return
-        // }
-        // this.props.changeSearch(text)
     }
 
     handleFocus(text, e){

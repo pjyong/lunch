@@ -4,7 +4,7 @@ import createHistory from 'history/createHashHistory'
 import { routerMiddleware } from 'react-router-redux'
 import { createLogger } from 'redux-logger'
 import initSate from './initState'
-import reducer from '../reducers/index'
+import {createRootReducer} from '../reducers/index'
 
 const history = createHistory()
 const middleware = [ thunk,routerMiddleware(history) ]
@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger())
 }
 const store = createStore(
-    reducer
+    createRootReducer()
     , initSate || {},
     applyMiddleware(...middleware)
 )

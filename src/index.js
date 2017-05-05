@@ -30,8 +30,8 @@ import NotFound from './pages/NotFound'
 import './index.css';
 
 window.addEventListener('load', () => {
-    FastClick.attach(document.body);
-});
+    FastClick.attach(document.body)
+})
 /*
 const App = React.createClass({
 
@@ -61,29 +61,52 @@ const App = React.createClass({
 const AppRouter = withRouter(App)
 */
 
+
+/*
+<Route path="/lunch/index" component={Home}/>
+<Route path="/history" component={History}/>
+<Route path="/manage" component={Manage}/>
+<Route path="/ask/index" component={Ask}/>
+<Route path="/ask/question/:id" component={QuestionDetail}/>
+<Route path="/ask/entrance">
+    <AskEntrance>
+        <Route exact path="/ask/entrance" component={LatestQuestionList}/>
+        <Route exact path="/ask/entrance/search" component={HotSearch}/>
+        <Route path="/ask/entrance/search/:key" component={SearchResult}/>
+        <Route exact path="/ask/entrance/choosecar" component={ChooseCar}/>
+        <Route path="/ask/entrance/choosecar/:brandid" component={ChooseCarClass}/>
+        <Route path="/ask/entrance/hello" component={Test}/>
+    </AskEntrance>
+</Route>
+<Route path="/ask/add" component={AskAdd}/>
+<Route component={NotFound}/>
+*/
 render(
     <Provider store={store}>
     <ConnectedRouter history={history}>
-            <Switch>
-            <Route path="/lunch/index" component={Home}/>
-            <Route path="/history" component={History}/>
-            <Route path="/manage" component={Manage}/>
-            <Route path="/ask/index" component={Ask}/>
-            <Route path="/ask/question/:id" component={QuestionDetail}/>
-            <Route path="/ask/entrance">
-                <AskEntrance>
-                    <Route exact path="/ask/entrance" component={LatestQuestionList}/>
-                    <Route exact path="/ask/entrance/search" component={HotSearch}/>
-                    <Route path="/ask/entrance/search/:key" component={SearchResult}/>
-                    <Route exact path="/ask/entrance/choosecar" component={ChooseCar}/>
-                    <Route path="/ask/entrance/choosecar/:brandid" component={ChooseCarClass}/>
-                    <Route path="/ask/entrance/hello" component={Test}/>
-                </AskEntrance>
-            </Route>
-            <Route path="/ask/add" component={AskAdd}/>
-            <Route component={NotFound}/>
-            </Switch>
+        <Switch>
+
+
+        </Switch>
     </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
 )
+
+const RouteWithRoutes = (route) => (
+    <Route path={route.path} render={props => {
+        if(typeof route.routes !== 'undefined' && route.routes.length !== 0){
+
+        }else{
+            return route.component
+        }
+        <route.component {...props} routes={route.routes}/>
+    }}/>
+)
+
+// 遍历路由配置
+const renderRouter = (routes) => {
+    return {routes.map((route)=>(
+        <Route path={route.path} component={route.component}/>
+    ))}
+}

@@ -56,6 +56,7 @@ const searchUI = (state = {}, action) => {
     }
 }
 
+/*
 const lunchApp = combineReducers({
     peopleList,
     departmentList,
@@ -69,10 +70,20 @@ const lunchApp = combineReducers({
 })
 
 export default lunchApp
+*/
 
 // 同步加载的reducers
+console.log(askReducer)
 const syncReducers = {
+    peopleList,
+    departmentList,
+    isPageFetching,
+    toast,
+    showInfoModal,
+    uid: (state = {}) => state,
+    searchUI,
     router: routerReducer,
+    ...askReducer
 }
 
 // 异步加载的reducers

@@ -1,4 +1,5 @@
-const questionList = (state = {}, action) => {
+// 问题列表
+export const questionList = (state = {}, action) => {
     var newState
     switch(action.type){
         case 'FETCH_SEARCH_QUESTIONS':
@@ -26,7 +27,8 @@ const questionList = (state = {}, action) => {
     }
 }
 
-const brandList = (state = {}, action) => {
+// 品牌列表
+export const brandList = (state = {}, action) => {
     switch(action.type){
         case 'FETCH_BRANDS':
             var newState = {
@@ -48,7 +50,8 @@ const brandList = (state = {}, action) => {
     }
 }
 
-const carClassList = (state = {}, action) => {
+// 车系列表
+export const carClassList = (state = {}, action) => {
     switch(action.type){
         case 'FETCH_CAR_CLASSES':
             var newState = Object.assign({}, state)
@@ -66,7 +69,8 @@ const carClassList = (state = {}, action) => {
     }
 }
 
-const categoryList = (state = {}, action) => {
+// 分类列表
+export const categoryList = (state = {}, action) => {
     switch(action.type){
         case 'FETCH_CATEGORIES':
             var newState = Object.assign({}, state)
@@ -83,7 +87,8 @@ const categoryList = (state = {}, action) => {
     }
 }
 
-const answerList = (state = {}, action) => {
+// 问题列表
+export const answerList = (state = {}, action) => {
     switch(action.type){
         case 'FETCH_ANSWER_LIST':
             // 和抓取的数据做比对
@@ -102,7 +107,8 @@ const answerList = (state = {}, action) => {
     }
 }
 
-const latestSolvedList = (state = [], action) => {
+// 最近解决的问题列表
+export const latestSolvedList = (state = [], action) => {
     switch(action.type){
         case 'FETCH_QUESTIONS':
             var ids = []
@@ -116,7 +122,8 @@ const latestSolvedList = (state = [], action) => {
     }
 }
 
-const searchQuestionList = (state = [], action) => {
+// 搜索问题结果列表
+export const searchQuestionList = (state = [], action) => {
     switch(action.type){
         case 'FETCH_SEARCH_QUESTIONS':
             var ids = []
@@ -132,5 +139,3 @@ const searchQuestionList = (state = [], action) => {
             return state
     }
 }
-
-export {questionList,categoryList,answerList,latestSolvedList,brandList,carClassList,searchQuestionList}
