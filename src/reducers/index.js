@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import peopleList from './people'
 import departmentList from './department'
-import askReducer from './ask/index'
 import { routerReducer } from 'react-router-redux'
 import {store} from '../store/index'
 
@@ -66,14 +65,12 @@ const lunchApp = combineReducers({
     uid: (state = {}) => state,
     searchUI,
     router:routerReducer,
-    ...askReducer
 })
 
 export default lunchApp
 */
 
 // 同步加载的reducers
-console.log(askReducer)
 const syncReducers = {
     peopleList,
     departmentList,
@@ -83,7 +80,6 @@ const syncReducers = {
     uid: (state = {}) => state,
     searchUI,
     router: routerReducer,
-    ...askReducer
 }
 
 // 异步加载的reducers
@@ -98,6 +94,10 @@ export function createRootReducer() {
 
 // 按需加载，注入相应的reducer
 export function injectReducer(key, reducer) {
-    asyncReducers[key] = reducer
+    if(key === null){
+        asyncReducers = {...asyncReducers, ...reducer}
+    }else{
+        asyncReducers[key] = reducer
+    }
     store.replaceReducer(createRootReducer()) // 替换当前的 rootReducer
 }

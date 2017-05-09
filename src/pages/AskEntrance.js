@@ -5,6 +5,8 @@ import Page from '../containers/Page'
 import SearchBar from '../components/common/SearchBar'
 import {fetchLatestSolvedQuestions,fetchAllCategories,changeSearch} from '../actions/ask'
 import {finishPageFetching} from '../actions/index'
+import {injectReducer} from '../reducers/index'
+
 
 
 
@@ -37,6 +39,8 @@ class AskEntrance extends React.Component {
         if(props.latestSolvedList.length === 0){
             $.when(props.fetchLatestSolvedQuestions(),props.fetchAllCategories()).then(props.finishPageFetching)
         }
+        // 将需要的reducer注入进来
+        injectReducer(null, require('../reducers/ask/').default)
     }
 
     handleSubmit(text, e){

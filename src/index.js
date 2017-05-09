@@ -13,18 +13,9 @@ import {store, history} from './store/index'
 /*加载页面和子页面*/
 import Home from './pages/Home'
 import Manage from './pages/Manage'
-import Ask from './pages/Ask'
-import AskEntrance from './pages/AskEntrance'
-import AskAdd from './pages/AskAdd'
-import History from './pages/History'
-import LatestQuestionList from './containers/ask/LatestQuestionList'
-import HotSearch from './containers/ask/HotSearch'
-import SearchResult from './containers/ask/SearchResult'
-import ChooseCar from './containers/ask/ChooseCar'
-import ChooseCarClass from './containers/ask/ChooseCarClass'
-import QuestionDetail from './pages/QuestionDetail'
+
 import Test from './pages/Test'
-import NotFound from './pages/NotFound'
+import Routes from './routes/index'
 // 使用页面动画组件
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import './index.css';
@@ -81,32 +72,51 @@ const AppRouter = withRouter(App)
 <Route path="/ask/add" component={AskAdd}/>
 <Route component={NotFound}/>
 */
+// 渲染单个路由
+const RenderSingleRouter = (props) => {
+    if(typeof props.route.routes !== 'undefined' && props.route.routes.length !== 0){
+        return (<Route path={props.route.path}>
+                <RenderRouters routes={props.route.routes} parent={props.route.component}/>
+            </Route>)
+    }else{
+        if(typeof props.route.component !== 'undefined'){
+            return <Route path={props.route.path} component={props.route.component} />
+        }else{
+            return <Route path={props.route.path} render={props.route.render} />
+        }
+    }
+}
+
+// 遍历路由配置
+const RenderRouters = (props) => {
+
+    if(typeof props.parent === 'undefined'){
+        /*
+        return <Switch>
+            {props.routes.map((route)=>(
+                <RenderSingleRouter route={route}/>
+            ))}
+        </Switch>
+        */
+        var ParentComponent = Switch
+    }else {
+        var ParentComponent = props.parent
+    }
+    //
+    return (<div>
+        {props.routes.map((route, index)=>(
+            <RenderSingleRouter route={route} key={index} />
+        ))}
+    </div>)
+}
+
+
+
 render(
     <Provider store={store}>
     <ConnectedRouter history={history}>
-        <Switch>
-
-
-        </Switch>
+        <RenderRouters routes={Routes}/>
     </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
 )
-
-const RouteWithRoutes = (route) => (
-    <Route path={route.path} render={props => {
-        if(typeof route.routes !== 'undefined' && route.routes.length !== 0){
-
-        }else{
-            return route.component
-        }
-        <route.component {...props} routes={route.routes}/>
-    }}/>
-)
-
-// 遍历路由配置
-const renderRouter = (routes) => {
-    return {routes.map((route)=>(
-        <Route path={route.path} component={route.component}/>
-    ))}
-}
