@@ -1,27 +1,15 @@
+import {renderDataList, renderSingleData, renderDataListOnlyIds, baseListStruct} from '../../common/utils'
+
 // 问题列表
-export const questionList = (state = {}, action) => {
+export const questionList = (state = baseListStruct, action) => {
     var newState
     switch(action.type){
         case 'FETCH_SEARCH_QUESTIONS':
         case 'FETCH_QUESTIONS':
             // 和抓取的数据做比对
-            newState = Object.assign({}, state)
-            action.data.map(question => {
-                if(typeof newState.byId[question.ID] === 'undefined'){
-                    newState.byId[question.ID] = question
-                    newState.allIds.push(question.ID)
-                }
-                return question
-
-            })
-            return newState
+            return renderDataList(action.data)
         case 'FETCH_QUESTION_DETAIL':
-            newState = Object.assign({}, state)
-            if(typeof newState.byId[action.data.ID] === 'undefined'){
-                newState.byId[action.data.ID] = action.data
-                newState.allIds.push(action.data.ID)
-            }
-            return newState
+            return renderSingleData(action.data)
         default:
             return state
     }
@@ -51,57 +39,31 @@ export const brandList = (state = {}, action) => {
 }
 
 // 车系列表
-export const carClassList = (state = {}, action) => {
+export const carClassList = (state = baseListStruct, action) => {
     switch(action.type){
         case 'FETCH_CAR_CLASSES':
-            var newState = Object.assign({}, state)
-            action.data.map(question => {
-                if(typeof newState.byId[question.ID] === 'undefined'){
-                    newState.byId[question.ID] = question
-                    newState.allIds.push(question.ID)
-                }
-                return question
-
-            })
-            return newState
+            return renderDataList(action.data)
         default:
             return state
     }
 }
 
 // 分类列表
-export const categoryList = (state = {}, action) => {
+export const categoryList = (state = baseListStruct, action) => {
     switch(action.type){
         case 'FETCH_CATEGORIES':
-            var newState = Object.assign({}, state)
-            action.data.map(question => {
-                if(typeof newState.byId[question.ID] === 'undefined'){
-                    newState.byId[question.ID] = question
-                    newState.allIds.push(question.ID)
-                }
-                return question
-            })
-            return newState
+            return renderDataList(action.data)
         default:
             return state
     }
 }
 
 // 问题列表
-export const answerList = (state = {}, action) => {
+export const answerList = (state = baseListStruct, action) => {
     switch(action.type){
         case 'FETCH_ANSWER_LIST':
             // 和抓取的数据做比对
-            var newState = Object.assign({}, state)
-            action.data.map(question => {
-                if(typeof newState.byId[question.ID] === 'undefined'){
-                    newState.byId[question.ID] = question
-                    newState.allIds.push(question.ID)
-                }
-                return question
-
-            })
-            return newState
+            return renderDataList(action.data)
         default:
             return state
     }
@@ -111,12 +73,7 @@ export const answerList = (state = {}, action) => {
 export const latestSolvedList = (state = [], action) => {
     switch(action.type){
         case 'FETCH_QUESTIONS':
-            var ids = []
-            action.data.map(question => {
-                ids.push(question.ID)
-                return question
-            })
-            return ids
+            return renderDataListOnlyIds(action.data)
         default:
             return state
     }
@@ -126,12 +83,7 @@ export const latestSolvedList = (state = [], action) => {
 export const searchQuestionList = (state = [], action) => {
     switch(action.type){
         case 'FETCH_SEARCH_QUESTIONS':
-            var ids = []
-            action.data.map(question => {
-                ids.push(question.ID)
-                return question
-            })
-            return ids
+            return renderDataListOnlyIds(action.data)
         // 如果搜索关键词变更就清空
         case 'RESET_SEARCH':
             return []

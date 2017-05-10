@@ -1,21 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Page from '../containers/Page'
-
-import SearchBar from '../components/common/SearchBar'
-import {fetchLatestSolvedQuestions,fetchAllCategories,changeSearch} from '../actions/ask'
-import {finishPageFetching} from '../actions/index'
-import {injectReducer} from '../reducers/index'
-
-
-
+import Page from '../Page'
+import SearchBar from '../../components/common/SearchBar'
+import {fetchLatestSolvedQuestions,fetchAllCategories,changeSearch} from '../../actions/ask'
+import {finishPageFetching} from '../../actions/index'
+import {RenderRouters} from '../../common/utils'
 
 import $ from 'jquery'
 import {
   withRouter
 } from 'react-router-dom'
-
-
 
 const mapStateToProps = (state) => {
     return {
@@ -36,11 +30,7 @@ class AskEntrance extends React.Component {
 
     constructor(props) {
         super(props)
-        if(props.latestSolvedList.length === 0){
-            $.when(props.fetchLatestSolvedQuestions(),props.fetchAllCategories()).then(props.finishPageFetching)
-        }
-        // 将需要的reducer注入进来
-        injectReducer(null, require('../reducers/ask/').default)
+        $.when(props.fetchLatestSolvedQuestions(),props.fetchAllCategories()).then(props.finishPageFetching)
     }
 
     handleSubmit(text, e){
@@ -88,7 +78,7 @@ class AskEntrance extends React.Component {
                         cancel: '取消'
                     }}
                 />
-            {this.props.children}
+            <RenderRouters routes={this.props.routes} parent="div"/>
         </Page>
     }
 }

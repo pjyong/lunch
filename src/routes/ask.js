@@ -1,7 +1,7 @@
+import React from 'react';
 import Ask from '../pages/Ask'
-import AskEntrance from '../pages/AskEntrance'
+import AskEntrance from '../containers/ask/AskEntrance'
 import AskAdd from '../pages/AskAdd'
-import History from '../pages/History'
 import LatestQuestionList from '../containers/ask/LatestQuestionList'
 import HotSearch from '../containers/ask/HotSearch'
 import SearchResult from '../containers/ask/SearchResult'
@@ -10,7 +10,6 @@ import ChooseCarClass from '../containers/ask/ChooseCarClass'
 import QuestionDetail from '../pages/QuestionDetail'
 
 import {injectReducer} from '../reducers/index'
-
 
 export default [
     {
@@ -23,21 +22,39 @@ export default [
     },
     {
         path: '/ask/entrance',
-        component: AskEntrance,
         render: () => {
+            const routes = [
+                {
+                    path: '/ask/entrance',
+                    component: LatestQuestionList,
+                    exact: true
+                },
+                {
+                    path: '/ask/entrance/search',
+                    component: HotSearch,
+                    exact: true
+                },
+                {
+                    path: '/ask/entrance/search/:key',
+                    component: SearchResult
+                },
+                {
+                    path: '/ask/entrance/choosecar',
+                    component: ChooseCar,
+                    exact: true
+                },
+                {
+                    path: '/ask/entrance/choosecar/:brandid',
+                    component: ChooseCarClass
+                },
+            ]
             // 将需要的reducer注入进来
             injectReducer(null, require('../reducers/ask/').default)
-            return <AskEntrance routes={} />
+            return <AskEntrance routes={routes}/>
         },
-        routes: [
-            {
-                path: '/ask/entrance',
-                component: LatestQuestionList
-            },
-            {
-                path: '/ask/entrance/search',
-                component: HotSearch
-            },
-        ]
-    }
+    },
+    {
+        path: '/ask/add',
+        component: AskAdd
+    },
 ]

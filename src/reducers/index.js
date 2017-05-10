@@ -83,7 +83,7 @@ const syncReducers = {
 }
 
 // 异步加载的reducers
-const asyncReducers = {}
+var asyncReducers = {}
 
 export function createRootReducer() {
     return combineReducers({
@@ -100,4 +100,6 @@ export function injectReducer(key, reducer) {
         asyncReducers[key] = reducer
     }
     store.replaceReducer(createRootReducer()) // 替换当前的 rootReducer
+    alert(1)
+
 }

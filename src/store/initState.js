@@ -20,6 +20,7 @@ export default {
     searchUI:{
         key: null
     },
+    /*
     // 问题分类列表
     categoryList:{
         byId: {},
@@ -47,4 +48,5 @@ export default {
     // 最近已解决的问题列表,id数组
     latestSolvedList:[],
     searchQuestionList:[],
+    */
 }

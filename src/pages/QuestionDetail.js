@@ -8,10 +8,12 @@ MediaBoxDescription,MediaBoxInfo,MediaBoxInfoMeta} = WeUI
 import {finishPageFetching} from '../actions/index'
 import {fetchQuestion} from '../actions/ask'
 import $ from 'jquery'
+import {baseListStruct} from '../common/utils'
+
 
 const mapStateToProps = (state, ownProps) => {
     var pid = parseInt(ownProps.match.params.id,10);
-    console.error(ownProps)
+    alert(2)
     return {
         isPageFetching: state.isPageFetching,
         questionID: pid,
