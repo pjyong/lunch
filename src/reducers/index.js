@@ -55,21 +55,6 @@ const searchUI = (state = {}, action) => {
     }
 }
 
-/*
-const lunchApp = combineReducers({
-    peopleList,
-    departmentList,
-    isPageFetching,
-    toast,
-    showInfoModal,
-    uid: (state = {}) => state,
-    searchUI,
-    router:routerReducer,
-})
-
-export default lunchApp
-*/
-
 // 同步加载的reducers
 const syncReducers = {
     peopleList,
@@ -100,6 +85,5 @@ export function injectReducer(key, reducer) {
         asyncReducers[key] = reducer
     }
     store.replaceReducer(createRootReducer()) // 替换当前的 rootReducer
-    alert(1)
 
 }

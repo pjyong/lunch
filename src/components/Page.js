@@ -6,15 +6,18 @@ import {Helmet} from "react-helmet";
 
 
 export default class Page extends React.Component {
-    componentDidMount(){
-    }
+    
+    // 卸载
     componentWillUnmount(){
         const{toast} = this.props
         toast.timer && clearTimeout(toast.timer)
     }
 
     render() {
-        const {spacing, className, children, toast, pageTitle} = this.props;
+        const {spacing, className, children, toast, pageTitle, isPageFetching} = this.props;
+        if(isPageFetching){
+            return <div></div>
+        }
 
         return (
             <section className={`page ${className} react_page`}>

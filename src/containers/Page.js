@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Page from '../components/Page'
 
 const mapStateToProps = (state) => ({
-    toast: state.toast
+    toast: state.toast,
 })
 
 const CPage = connect(

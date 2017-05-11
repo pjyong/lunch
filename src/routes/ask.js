@@ -18,7 +18,11 @@ export default [
     },
     {
         path: '/ask/question/:id',
-        component: QuestionDetail
+        render: (props) => {
+            injectReducer(null, require('../reducers/ask/').default)
+            // 当使用render时,有点不一样,需要手动将属性传过来
+            return <QuestionDetail {...props}/>
+        },
     },
     {
         path: '/ask/entrance',

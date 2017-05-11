@@ -11,7 +11,8 @@ import {
   withRouter
 } from 'react-router-dom'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+    console.log(ownProps)
     return {
         isPageFetching: state.isPageFetching,
         searchUI: state.searchUI,
