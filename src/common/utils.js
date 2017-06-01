@@ -59,3 +59,25 @@ export const renderSingleData = (data = {}, state = {
     }
     return newState
 }
+
+// allIds, byId树形结构,取某一级的所有记录
+export const getCates = (pid, categoryList, key = 'ParentID') => {
+    let finalArr  = []
+    categoryList.allIds.map((id)=>{
+        if(categoryList.byId[id][key] === pid){
+            finalArr.push(categoryList.byId[id])
+        }
+        return false
+    })
+    return finalArr
+}
+
+// 将一个数组划成三个三个的二维数组
+export const chunk = (arr, len) => {
+    let chunks = [], i = 0, n = arr.length
+    while (i < n) {
+        chunks.push(arr.slice(i, i += len));
+    }
+
+    return chunks;
+}

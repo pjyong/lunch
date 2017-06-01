@@ -8,6 +8,7 @@ import {createRootReducer} from '../reducers/index'
 
 const history = createHistory()
 const middleware = [ thunk,routerMiddleware(history) ]
+// 如果是开发环境就生成日志
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger())
 }

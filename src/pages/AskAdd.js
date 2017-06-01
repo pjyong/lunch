@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Page from '../containers/Page'
 import WeUI from 'react-weui'
-const {CellsTitle,Form,FormCell,CellBody,TextArea,Input,ButtonArea,Button,Footer,FooterLinks,FooterLink,Msg} = WeUI
 import {changeToast} from '../actions/index'
 import {submitQuestion} from '../actions/ask'
-
 import $ from 'jquery'
+
+const {CellsTitle,Form,FormCell,CellBody,TextArea,Input,ButtonArea,Button,Footer,FooterLinks,FooterLink,Msg} = WeUI
 
 const mapStateToProps = (state) => {
     return {

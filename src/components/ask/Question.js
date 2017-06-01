@@ -1,9 +1,9 @@
 import React from 'react'
 import WeUI from 'react-weui'
-const {MediaBox,MediaBoxBody,MediaBoxTitle,MediaBoxDescription,MediaBoxInfoMeta,MediaBoxInfo} = WeUI
 import {
   withRouter
 } from 'react-router-dom'
+const {MediaBox,MediaBoxBody,MediaBoxTitle,MediaBoxDescription,MediaBoxInfoMeta,MediaBoxInfo} = WeUI
 
 class Question extends React.Component {
     handleClick(){

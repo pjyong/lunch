@@ -1,15 +1,17 @@
 import React from 'react'
 import WeUI from 'react-weui'
+
+import $ from 'jquery'
+import {
+  Link
+} from 'react-router-dom'
+
 const {
     Cells,
     Cell,
     CellsTitle,
     LoadMore
 } = WeUI
-import $ from 'jquery'
-import {
-  Link
-} from 'react-router-dom'
 
 const getAllCarClassesByBrandID = (brandID, dataList) => {
     var newList = []

@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Page from '../Page'
 import SearchBar from '../../components/common/SearchBar'
-import {fetchLatestSolvedQuestions,fetchAllCategories,changeSearch} from '../../actions/ask'
-import {finishPageFetching} from '../../actions/index'
+import {fetchLatestSolvedQuestions,fetchAllCategories} from '../../actions/ask'
+import {startPageFetching,finishPageFetching} from '../../actions/index'
 import {RenderRouters} from '../../common/utils'
 
 import $ from 'jquery'
@@ -12,9 +12,7 @@ import {
 } from 'react-router-dom'
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(ownProps)
     return {
-        isPageFetching: state.isPageFetching,
         searchUI: state.searchUI,
         latestSolvedList: state.latestSolvedList
     }
@@ -23,15 +21,20 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
     fetchLatestSolvedQuestions,
     fetchAllCategories,
+    startPageFetching,
     finishPageFetching,
-    changeSearch
 }
 
 class AskEntrance extends React.Component {
 
     constructor(props) {
         super(props)
-        $.when(props.fetchLatestSolvedQuestions(),props.fetchAllCategories()).then(props.finishPageFetching)
+        props.startPageFetching()
+        // 开始抓取数据
+        $.when(
+            props.fetchLatestSolvedQuestions(),
+            props.fetchAllCategories()
+        ).then(props.finishPageFetching)
     }
 
     handleSubmit(text, e){
@@ -48,9 +51,11 @@ class AskEntrance extends React.Component {
     }
 
     handleFocus(text, e){
+        // 如果已经在搜索页面,do nothing
         if( this.props.history.location.pathname.indexOf('/ask/entrance/search', 0) !== -1 ){
             return false;
         }
+        // 去搜索页面
         if(text === ''){
             this.props.history.push('/ask/entrance/search')
         }else{
@@ -63,10 +68,6 @@ class AskEntrance extends React.Component {
     }
 
     render(){
-        if(this.props.isPageFetching){
-            return <div></div>
-        }
-
         return <Page spacing={true} className={'ask_page'}>
             <SearchBar
                     text={this.props.searchUI.key}

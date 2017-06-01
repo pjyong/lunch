@@ -15,8 +15,6 @@ export default {
     },
     // 是否弹出注册modal
     showInfoModal: false,
-
-
     searchUI:{
         key: null
     },

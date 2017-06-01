@@ -1,10 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import {
-    // withRouter,
-    Switch,
-} from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
 import {store, history} from './store/index'
 /*加载页面和子页面*/
@@ -12,17 +9,17 @@ import 'weui'
 import 'react-weui/lib/react-weui.min.css'
 // 加载所有路由配置
 import Routes from './routes/index'
-// 使用页面动画组件
-// import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-// 解决IOS web点击延迟
 import FastClick from 'fastclick';
-window.addEventListener('load', () => {
-    FastClick.attach(document.body)
-})
 // 加载自己的工具包
 import {RenderRouters} from './common/utils'
 // 加载自定义CSS
-import './index.css';
+import './index.css'
+
+// 解决IOS web点击延迟
+window.addEventListener('load', () => {
+    FastClick.attach(document.body)
+})
+
 
 /*
 const App = React.createClass({

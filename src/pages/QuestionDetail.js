@@ -3,18 +3,17 @@ import { connect } from 'react-redux'
 import Page from '../containers/Page'
 import AnswerList from '../containers/ask/AnswerList'
 import WeUI from 'react-weui'
-const {Panel,PanelBody,MediaBox,MediaBoxTitle,
-MediaBoxDescription,MediaBoxInfo,MediaBoxInfoMeta} = WeUI
 import {finishPageFetching} from '../actions/index'
 import {fetchQuestion} from '../actions/ask'
 import $ from 'jquery'
 
+const {Panel,PanelBody,MediaBox,MediaBoxTitle,
+MediaBoxDescription,MediaBoxInfo,MediaBoxInfoMeta} = WeUI
+
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(ownProps)
-    var pid = parseInt(ownProps.match.params.id,10);
+    var pid = parseInt(ownProps.match.params.id,10)
     return {
-        isPageFetching: state.isPageFetching,
         questionID: pid,
         questionDetail: state.questionList.byId[pid]
     }
@@ -33,9 +32,6 @@ class QuestionDetail extends React.Component {
     }
 
     render(){
-        if(this.props.isPageFetching){
-            return <Page className={'question_page'}></Page>
-        }
         return <Page className={'question_page'} pageTitle={this.props.questionDetail.Title}>
             <Panel>
                 <PanelBody>

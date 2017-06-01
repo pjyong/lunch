@@ -1,5 +1,10 @@
 import React from 'react'
 import WeUI from 'react-weui'
+import {
+  Link
+} from 'react-router-dom'
+import $ from 'jquery'
+
 const {
     Cells,
     Cell,
@@ -7,10 +12,6 @@ const {
     CellsTitle,
     LoadMore,CellFooter,CellHeader
 } = WeUI
-import {
-  Link
-} from 'react-router-dom'
-import $ from 'jquery'
 
 class ChooseCar extends React.Component {
     constructor(props){
