@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Page from '../containers/Page'
+import Page from '../containers/common/Page'
 import WeUI from 'react-weui'
 import {changeToast} from '../actions/index'
 import {submitQuestion} from '../actions/ask'

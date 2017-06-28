@@ -6,7 +6,7 @@ export default {
     departmentList:[
 
     ],
-    isPageFetching: true,
+    isPageFetching: false,
     toast:{
         icon: '',
         show: false,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Page from '../containers/Page'
+import Page from '../containers/common/Page'
 import AnswerList from '../containers/ask/AnswerList'
 import WeUI from 'react-weui'
 import {finishPageFetching} from '../actions/index'

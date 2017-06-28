@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
 import SearchResult from '../../components/ask/SearchResult'
 import {changeSearch,searchAllQuestions} from '../../actions/ask'
-import {getQuestionList} from './LatestQuestionList'
+import {getDataListFromIDs} from 'common/utils'
 
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        questionList: getQuestionList(state.questionList, ownProps.pidArr, state.searchQuestionList),
+        questionList: getDataListFromIDs(state.questionList, state.searchQuestionList),
         searchQuestionList: state.searchQuestionList,
         text: state.searchUI.key
     }

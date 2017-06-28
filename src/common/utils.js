@@ -60,6 +60,16 @@ export const renderSingleData = (data = {}, state = {
     return newState
 }
 
+// []
+export const getDataListFromIDs = (ids = [], allData = {}) => {
+    var newDataList = []
+    ids.map(id => {
+        newDataList.push(allData[id])
+        return id
+    })
+    return newDataList
+}
+
 // allIds, byId树形结构,取某一级的所有记录
 export const getCates = (pid, categoryList, key = 'ParentID') => {
     let finalArr  = []

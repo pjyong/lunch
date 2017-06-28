@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Page from '../containers/Page'
+import Page from '../containers/common/Page'
 
 class NotFound extends React.Component {
 

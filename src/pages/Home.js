@@ -4,7 +4,7 @@ import DepartmentList from '../containers/DepartmentList'
 import JoinLunch from '../containers/JoinLunch'
 import Statistic from '../containers/Statistic'
 import JoinTeam from '../containers/JoinTeam'
-import Page from '../containers/Page'
+import Page from '../containers/common/Page'
 import {fetchDepartments,finishPageFetching,fetchPeople} from '../actions/index'
 import $ from 'jquery'
 

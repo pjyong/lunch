@@ -5,7 +5,7 @@ import { routerMiddleware } from 'react-router-redux'
 import { createLogger } from 'redux-logger'
 import initSate from './initState'
 import {createRootReducer} from '../reducers/index'
-
+// 使用hash history
 const history = createHistory()
 const middleware = [ thunk,routerMiddleware(history) ]
 // 如果是开发环境就生成日志

@@ -2,7 +2,6 @@ import {renderDataList, renderSingleData, renderDataListOnlyIds, baseListStruct}
 
 // 问题列表
 export const questionList = (state = baseListStruct, action) => {
-    var newState
     switch(action.type){
         case 'FETCH_SEARCH_QUESTIONS':
         case 'FETCH_QUESTIONS':

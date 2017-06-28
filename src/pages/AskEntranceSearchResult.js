@@ -1,10 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Page from '../Page'
-import SearchBar from '../../components/common/SearchBar'
-import {fetchLatestSolvedQuestions,fetchAllCategories} from '../../actions/ask'
-import {startPageFetching,finishPageFetching} from '../../actions/index'
-import {RenderRouters} from '../../common/utils'
+import Page from 'containers/common/Page'
+import HotSearch from 'containers/ask/HotSearch'
+import SearchResult from 'containers/ask/SearchResult'
+import ChooseCar from 'containers/ask/ChooseCar'
+import ChooseCarClass from 'containers/ask/ChooseCarClass'
+import { Route } from 'react-router-dom'
+import SearchBar from 'components/common/SearchBar'
+import {fetchLatestSolvedQuestions,fetchAllCategories} from 'actions/ask'
+import {startPageFetching,finishPageFetching} from 'actions/index'
+import {injectReducer} from 'reducers/index'
+import AskReducers  from 'reducers/ask/index'
+import pathToRegexp from 'path-to-regexp'
 
 import $ from 'jquery'
 import {
@@ -12,9 +19,10 @@ import {
 } from 'react-router-dom'
 
 const mapStateToProps = (state, ownProps) => {
+    const re = pathToRegexp('/ask/entrance/search/:key')
+    const result = re.exec(ownProps.location.pathname)
     return {
-        searchUI: state.searchUI,
-        latestSolvedList: state.latestSolvedList
+        key: result ? result[1] : ''
     }
 }
 
@@ -37,6 +45,11 @@ class AskEntrance extends React.Component {
         ).then(props.finishPageFetching)
     }
 
+    componentWillMount(){
+        // 注入reducers
+        injectReducer(null, AskReducers)
+    }
+
     handleSubmit(text, e){
         if(text === ''){
             alert('不能为空')
@@ -51,16 +64,7 @@ class AskEntrance extends React.Component {
     }
 
     handleFocus(text, e){
-        // 如果已经在搜索页面,do nothing
-        if( this.props.history.location.pathname.indexOf('/ask/entrance/search', 0) !== -1 ){
-            return false;
-        }
-        // 去搜索页面
-        if(text === ''){
-            this.props.history.push('/ask/entrance/search')
-        }else{
-            this.props.history.push('/ask/entrance/search/'+text)
-        }
+        this.props.history.push('/ask/entrance/search/'+text)
     }
 
     handleCancel(){
@@ -70,7 +74,7 @@ class AskEntrance extends React.Component {
     render(){
         return <Page spacing={true} className={'ask_page'}>
             <SearchBar
-                    text={this.props.searchUI.key}
+                    text={this.props.key}
                     onSubmit={this.handleSubmit.bind(this)}
                     onChange={this.handleChange.bind(this)}
                     onFocus={this.handleFocus.bind(this)}
@@ -80,7 +84,7 @@ class AskEntrance extends React.Component {
                         cancel: '取消'
                     }}
                 />
-            <RenderRouters routes={this.props.routes} parent="div"/>
+            <SearchResult />
         </Page>
     }
 }

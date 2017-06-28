@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import React from 'react'
-import HotSearch from '../../components/ask/HotSearch'
-import {changeSearch} from '../../actions/ask'
-import {getCates} from '../../common/utils'
+import HotSearch from 'components/ask/HotSearch'
+import {changeSearch} from 'actions/ask'
+import {getCates} from 'common/utils'
 
 const mapStateToProps = (state) => {
     return {
@@ -15,10 +15,10 @@ const mapDispatchToProps = {
 }
 
 class CHotSearch extends React.Component {
+
     constructor(props){
         super(props)
         // 初始化
-        return
         this.state = {
             parentCategory: 0,
             partialCategoryList: getCates(0, props.categoryList)

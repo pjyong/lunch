@@ -2,10 +2,10 @@ import { connect } from 'react-redux'
 import React from 'react';
 import WeUI from 'react-weui'
 import {Helmet} from "react-helmet";
-import {startPageFetching,finishPageFetching} from '../actions/index'
+import {startPageFetching,finishPageFetching} from '../../actions/index'
 const {Toast} = WeUI
 
-// 全局的toast窗口,和正在抓取的状态
+// 全局的toast窗口,和整个页面的加载状态
 const mapStateToProps = (state) => ({
     toast: state.toast,
     isPageFetching: state.isPageFetching,
@@ -20,17 +20,17 @@ class Page extends React.Component {
         // 清除弹出窗口
         const{toast,finishPageFetching} = this.props
         toast.timer && clearTimeout(toast.timer)
-        // 完成页面加载
+        // 结束页面加载
         finishPageFetching()
     }
 
     render() {
-        const {spacing, className, children, toast, pageTitle, isPageFetching} = this.props;
+        const {className, spacing, children, toast, pageTitle, isPageFetching} = this.props;
         if(isPageFetching){
             return <div></div>
         }
         return (
-            <section className={`page ${className} react_page`}>
+            <section className={`page ${className}`}>
                 <Helmet>
                 <title>{pageTitle}</title>
                 </Helmet>

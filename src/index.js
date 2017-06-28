@@ -1,24 +1,29 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { Switch } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
-import {store, history} from './store/index'
+import {store, history} from 'store/index'
 /*加载页面和子页面*/
 import 'weui'
 import 'react-weui/lib/react-weui.min.css'
 // 加载所有路由配置
-import Routes from './routes/index'
 import FastClick from 'fastclick';
-// 加载自己的工具包
-import {RenderRouters} from './common/utils'
 // 加载自定义CSS
-import './index.css'
+import 'index.css'
+import Ask from 'pages/Ask'
+import AskEntrance from 'pages/AskEntrance'
+import BaseAsk from 'pages/common/BaseAsk'
+// import AskEntranceChooseCar from 'pages/AskEntranceChooseCar'
+// import AskEntranceChooseCarClass from 'pages/AskEntranceChooseCarClass'
+import AskEntranceHotSearch from 'pages/AskEntranceHotSearch'
+import AskEntranceSearchResult from 'pages/AskEntranceSearchResult'
 
 // 解决IOS web点击延迟
 window.addEventListener('load', () => {
     FastClick.attach(document.body)
 })
+
 
 
 /*
@@ -70,11 +75,21 @@ const AppRouter = withRouter(App)
 <Route path="/ask/add" component={AskAdd}/>
 <Route component={NotFound}/>
 */
+
+// <Route path="/ask/entrance/choosecar" component={AskEntranceChooseCar}/>
+// <Route path="/ask/entrance/choosecar/:brandid" component={AskEntranceChooseCarClass}/>
 render(
     <Provider store={store}>
-    <ConnectedRouter history={history}>
-        <RenderRouters routes={Routes} parent={Switch}/>
-    </ConnectedRouter>
+        <ConnectedRouter history={history}>
+            <Switch>
+                <BaseAsk>
+                <Route path="/ask/index" component={Ask}/>
+                <Route path="/ask/entrance" component={AskEntrance}/>
+                <Route path="/ask/entrance/search" component={AskEntranceHotSearch}/>
+                <Route path="/ask/entrance/search/:key" component={AskEntranceSearchResult}/>
+                </BaseAsk>
+            </Switch>
+        </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
 )

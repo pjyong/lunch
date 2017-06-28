@@ -5,10 +5,8 @@ import {startPageFetching,setLoadingToast,hideToast,changeToast} from './index'
 // 抓取最近解决的
 export const fetchLatestSolvedQuestions = () => {
     return dispatch => {
-        dispatch(startPageFetching())
         return askService.fetchLatestSolvedQuestions().then(
             json => {
-                // console.info(json)
                 return dispatch({
                     type: 'FETCH_QUESTIONS',
                     data: json

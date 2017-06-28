@@ -53,6 +53,7 @@ export default [
                 },
             ]
             // 将需要的reducer注入进来
+            // alert(123)
             injectReducer(null, require('../reducers/ask/').default)
             return <AskEntrance routes={routes}/>
         },
