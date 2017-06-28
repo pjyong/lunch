@@ -68,20 +68,26 @@ class BaseSearchBar extends React.Component{
 
     constructor(props){
         super(props)
-        this.state={
-            focus: false,
-            clearing: false,
-            text: ''
+        if(props.text !== null){
+            this.state={
+                focus: true,
+                clearing: false,
+                text: props.text
+            }
+        }else{
+            this.state={
+                focus: false,
+                clearing: false,
+                text: ''
+            }
         }
 
     }
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps.text !== null){
-            this.setState({focus: true, text: nextProps.text})
-        }else{
-            this.setState({focus: false, text: ''})
-        }
+    componentDidMount(){
+      if(this.state.focus){
+        this.refs.searchInput.focus()
+      }
     }
 
 
@@ -132,12 +138,7 @@ class BaseSearchBar extends React.Component{
             'weui-search-bar': true,
             'weui-search-bar_focusing': this.state.focus
         }, className);
-        var inputValue
-        if(this.state.text === null){
-            inputValue = ''
-        }else{
-            inputValue = this.state.text
-        }
+
 
         return (
             <div className={clz}>
@@ -152,7 +153,7 @@ class BaseSearchBar extends React.Component{
                             placeholder={placeholder}
                             onFocus={this.focusHandle.bind(this)}
                             onChange={this.changeHandle.bind(this)}
-                            value={inputValue}
+                            value={this.state.text}
                             autoComplete={autocomplete}
                         />
                         {/*React will not trigger onMouseDown when not onClick presented*/}

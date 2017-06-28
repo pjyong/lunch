@@ -90,7 +90,6 @@ export const fetchAnswerList = (qid) => {
 // 抓取所有分类
 export const fetchAllCategories = () => {
     return dispatch => {
-        dispatch(startPageFetching())
         return askService.fetchAllCategories().then(
             json => {
                 return dispatch({

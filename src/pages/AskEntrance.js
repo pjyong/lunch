@@ -25,6 +25,7 @@ const mapDispatchToProps = {
 class AskEntrance extends React.Component {
 
     constructor(props) {
+      console.error('fuck')
         super(props)
         props.startPageFetching()
         $.when(

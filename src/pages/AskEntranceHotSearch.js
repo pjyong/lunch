@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Page from 'containers/common/Page'
 import HotSearch from 'containers/ask/HotSearch'
-import SearchResult from 'containers/ask/SearchResult'
 import ChooseCar from 'containers/ask/ChooseCar'
 import ChooseCarClass from 'containers/ask/ChooseCarClass'
 import { Route } from 'react-router-dom'
@@ -38,7 +37,7 @@ class AskEntranceHotSearch extends React.Component {
 
     render(){
         return <Page spacing={true} className={''}>
-            <SearchBar text={''} />
+            <SearchBar text='' />
             <HotSearch />
         </Page>
     }

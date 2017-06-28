@@ -81,14 +81,12 @@ const AppRouter = withRouter(App)
 render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <Switch>
-                <BaseAsk>
-                <Route path="/ask/index" component={Ask}/>
-                <Route path="/ask/entrance" component={AskEntrance}/>
-                <Route path="/ask/entrance/search" component={AskEntranceHotSearch}/>
-                <Route path="/ask/entrance/search/:key" component={AskEntranceSearchResult}/>
-                </BaseAsk>
-            </Switch>
+              <BaseAsk>
+                <Route exact path="/ask/index" component={Ask}/>
+                <Route exact path="/ask/entrance" component={AskEntrance}/>
+                <Route exact path="/ask/entrance/search" component={AskEntranceHotSearch}/>
+                <Route exact path="/ask/entrance/search/:key" component={AskEntranceSearchResult}/>
+              </BaseAsk>
         </ConnectedRouter>
     </Provider>,
     document.getElementById('root')

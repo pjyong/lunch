@@ -53,26 +53,6 @@ class HotSearch extends React.Component {
         }
     }
 
-
-    /*
-    componentDidMount(){
-        console.info('didmount')
-
-    }
-    componentWillReceiveProps(){
-        console.info('receiveprops')
-    }
-    shouldComponentUpdate(){
-        console.info('shouldupdate')
-        return true
-    }
-    componentWillUpdate(){
-        console.info('willupdate')
-    }
-    */
-
-
-
     handleClickChooseCar(){
         this.props.changeSearch('', 'choosecarclass')
     }
